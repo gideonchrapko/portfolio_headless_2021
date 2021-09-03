@@ -1,18 +1,38 @@
 export default {
     name: "project",
-    title: "Title",
+    title: "Project",
     type: "document",
     fields: [
         {
-            name: "title",
+            name: 'mainImage',
+            title: 'Main image',
+            type: 'image',
+            options: {
+              hotspot: true,
+            },
+          },
+        {
+            name: "slug",
+            title: "Slug",
+            type: "slug"
+        },
+        {
+            name: "projectTitle",
             title: "Project Title",
             type: "string"
         },
         {
-            
-        }
+            name: "companyName",
+            title: "Company Name",
+            type: "string"
+        },
+        {
+            name: "projectOverview",
+            title: "Project Overview",
+            type: "blockContent"
+        },
     ]
-
+}
 
 
 //     name: "project",
