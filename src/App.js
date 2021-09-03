@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import sanityClient from './client'
 
-function App() {
+const App = () => {
+  const [postData, setPostData] = useState(null)
+
+  useEffect(() => {
+    sanityClient.fetch(`*[_type == "post"]{
+      title,
+      slug,
+      mainImage{
+          asset->{
+            _id,
+            url
+          },
+          alt
+      }
+    }`)
+    .then((data) => setPostData(data))
+    .catch(console.error)
+  },[postData])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    {/* <h2>Blog Posts</h2>
+    <h3>Welcome to my blog posts page!</h3> */}
+    <div>
+      {postData &&
+        postData.map((post, index) => (
+            <span key={index}>
+              <img src={post.mainImage.asset.url} alt="" />
+              <h6>{post.slug.current}</h6>
+              <span>
+                <h2>{post.title}</h2>
+              </span>
+            </span>
+        ))}
     </div>
-  );
+  </div>
+  )
 }
 
 export default App;
