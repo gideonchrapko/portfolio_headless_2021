@@ -22,6 +22,7 @@ const Home = () => {
 
     return (
         <div>
+            <h1>Gideon Chrapko Portfolio</h1>
             <h1>Landing</h1>
             <h1>Projects</h1>
             {postData &&
