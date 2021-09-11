@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Home from './Components/Home'
 import singlePost from './Components/singlePost'
+import NotFound from './Components/NotFound'
 
 const App = () => {
   return (
@@ -10,7 +11,8 @@ const App = () => {
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/project/:slug" component={singlePost} />
+            <Route path="/project/:slugRoute" component={singlePost} />
+            <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
     </div>

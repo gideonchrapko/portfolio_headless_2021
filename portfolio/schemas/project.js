@@ -22,6 +22,11 @@ export default {
             type: "string"
         },
         {
+            name: "sectionTitle",
+            title: "Section Title",
+            type: "string"
+        },
+        {
             name: "companyName",
             title: "Company Name",
             type: "string"
@@ -31,41 +36,17 @@ export default {
             title: "Project Overview",
             type: "blockContent"
         },
+        {
+            title: 'Role',
+            name: 'role',
+            type: 'array',
+            of: [{type: 'string'}]
+        },
+        {
+            title: 'Tools',
+            name: 'tools',
+            type: "array",
+            of: [{type: "string"}]
+        },
     ]
 }
-
-
-//     name: "project",
-//     title: "Project",
-//     type: "document",
-//     fields: [
-//         {
-//             name: "title",
-//             type: "string",
-//         },
-//         {
-//             name: "date",
-//             type: "datetime",
-//         },
-//         {
-//             name: "place",
-//             type: "string",
-//         },
-//         {
-//             name: "description",
-//             type: "text",
-//         },
-//         {
-//             name: "projectType",
-//             title: "Project type",
-//             type: "string",
-//             options: {
-//                 list: [
-//                     { value: "personal", title: "Personal" },
-//                     { value: "client", title: "client" },
-//                     { value: "school", title: "School"}
-//                 ]
-//             }
-//         },
-//     ]
-// }

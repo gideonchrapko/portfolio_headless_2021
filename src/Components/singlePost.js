@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import sanityClient from '../client'
+import BlockContent from '@sanity/block-content-to-react'
 
 const App = () => {
   const [singlePost, setSinglePost] = useState(null)
@@ -16,8 +17,11 @@ const App = () => {
         alt
       },
       projectTitle,
+      sectionTitle,
       companyName,
-      projectOverview
+      projectOverview,
+      role,
+      tools,
     }`)
 
     .then((data) => setSinglePost(data))
@@ -26,23 +30,29 @@ const App = () => {
 
   return (
     <div>
-    {/* <h2>Blog Posts</h2>
-    <h3>Welcome to my blog posts page!</h3> */}
-    <div>
-      {singlePost &&
-        singlePost.map((project, index) => (
-            <span key={index}>
-              <img src={project.mainImage.asset.url} alt={project.projectTitle} style={{ height: "10vh", width: "auto"}} />
-              <h6>{project.projectTitle}</h6>
-              <span>
-                <h2>{project.companyName}</h2>
-                {/* <h2>{project.projectOverview}</h2> */}
+      <div>
+        {singlePost &&
+          singlePost.map((project, index) => (
+              <span key={index}>
+                <img src={project.mainImage.asset.url} alt={project.projectTitle} style={{ height: "10vh", width: "auto"}} />
+                <h1>{project.projectTitle}</h1>
+                <h3>{project.sectionTitle}</h3>
+                <h3>Company</h3>
+                  <h4>{project.companyName}</h4>
+                  <BlockContent 
+                    blocks={project.projectOverview} 
+                    projectId="kjeh3i1n"
+                    dataset="production"
+                  />
+                  <h3>Role</h3>
+                  <h4>{project.role}</h4>
+                  <h3>Tools</h3>
+                  <h4>{project.tools}</h4>
               </span>
-            </span>
-        ))}
+          ))}
+      </div>
     </div>
-  </div>
-  )
+    )
 }
 
 export default App;
