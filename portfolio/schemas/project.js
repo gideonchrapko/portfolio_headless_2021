@@ -12,8 +12,8 @@ export default {
             },
           },
         {
-            name: "slug",
-            title: "Slug",
+            name: "slugRoute",
+            title: "Slug Route",
             type: "slug"
         },
         {

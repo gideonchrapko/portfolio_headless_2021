@@ -14,7 +14,8 @@ const Home = () => {
                 },
                 alt
               },
-            slug,
+            slugRoute,
+            projectTitle
         }`)
         .then((data) => setPostData(data))
         .catch(console.error)
@@ -28,8 +29,8 @@ const Home = () => {
             {postData &&
                 postData.map((project, index) => (
                     <span key={index}>
-                        <img src={project.mainImage.asset.url} alt={project.slug.current} style={{ height: "10vh", width: "auto"}}/>
-                        <Link to={"/project/" + project.slug.current}>{project.slug.current}</Link>
+                        <img src={project.mainImage.asset.url} alt={project.slugRoute.current} style={{ height: "10vh", width: "auto"}}/>
+                        <Link to={"/project/" + project.slugRoute.current}>{project.projectTitle}</Link>
                     </span>
                  ))}
             <h1>About</h1>

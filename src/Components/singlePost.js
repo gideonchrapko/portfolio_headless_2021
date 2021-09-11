@@ -4,10 +4,10 @@ import sanityClient from '../client'
 
 const App = () => {
   const [singlePost, setSinglePost] = useState(null)
-  const { slug } = useParams()
+  const { slugRoute } = useParams()
 
   useEffect(() => {
-    sanityClient.fetch(`*[slug.current == "${slug}"]{
+    sanityClient.fetch(`*[slugRoute.current == "${slugRoute}"]{
       mainImage{
         asset->{
           _id,
