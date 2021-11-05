@@ -1,0 +1,33 @@
+.nav-container {
+    background-color: #FF00A7;
+    border-radius: 40px 40px 0px 0px;
+}
+
+.blend {
+    mix-blend-mode: multiply;
+}
+
+.nav-text {
+    display:inline-block;
+    padding: 20px 0px 20px 0px;
+    font-size: clamp(15pt, 3vw, 20pt);
+    font-family: Helvetica, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.text-nav-head {
+    font-size: clamp(8pt, 2vw, 20pt);
+    font-family: Helvetica, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: black;
+    text-decoration: none;
+}
+
+.link {
+    cursor: pointer;
+}

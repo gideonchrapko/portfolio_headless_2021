@@ -11,6 +11,14 @@ export default {
               hotspot: true,
             },
           },
+          {
+            name: 'thumbImage',
+            title: 'thumb Image',
+            type: 'image',
+            options: {
+              hotspot: true,
+            },
+          },
         {
             name: "slugRoute",
             title: "Slug Route",
@@ -24,7 +32,8 @@ export default {
         {
             name: "sectionTitle",
             title: "Section Title",
-            type: "string"
+            type: "array",
+            of: [{type: "string"}]
         },
         {
             name: "companyName",
@@ -48,5 +57,42 @@ export default {
             type: "array",
             of: [{type: "string"}]
         },
+        {
+            name: 'personaImage1',
+            title: 'Person Image 1',
+            type: 'image',
+            options: {
+              hotspot: true,
+            },
+          },
+          {
+            name: 'personaImage2',
+            title: 'Person Image 2',
+            type: 'image',
+            options: {
+              hotspot: true,
+            },
+          },
+          {
+            name: 'personaImage3',
+            title: 'Person Image 3',
+            type: 'image',
+            options: {
+              hotspot: true,
+            },
+          },
+          {
+            name: "experienceMapOverview",
+            title: "Experience Map Overview",
+            type: "blockContent"
+        },
+          {
+            name: 'experienceMap',
+            title: 'Experience Map',
+            type: 'image',
+            options: {
+              hotspot: true,
+            },
+          },
     ]
 }
