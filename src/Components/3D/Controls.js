@@ -26,8 +26,8 @@ export default function Controls({ disable, ...props }) {
       enableRotate={true}
       dampingFactor={0.1}
       rotateSpeed={0.7}
-      minPolarAngle={Math.PI / 1.9}
-      maxPolarAngle={Math.PI / 1.9}
+      // minPolarAngle={Math.PI / 1.9}
+      // maxPolarAngle={Math.PI / 1.9}
       {...props}
       args={[camera, gl.domElement]}
     />

@@ -5,8 +5,6 @@ import React, { useRef, useState, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useSpring } from '@react-spring/core'
 import { a } from '@react-spring/three'
-import { animated } from '@react-spring/web'
-
 export default function Model({ ...props }) {
   const group = useRef()
   const { nodes, materials } = useGLTF('/SignNeon.glb')

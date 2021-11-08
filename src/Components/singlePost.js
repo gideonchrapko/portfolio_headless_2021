@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
-import sanityClient from '../client'
-import BlockContent from '@sanity/block-content-to-react'
+import sanityClient from '../client';
+import BlockContent from '@sanity/block-content-to-react';
+import { Container, Col, Row } from 'react-bootstrap';
+import { useSpring, animated } from 'react-spring'
 
-const App = () => {
-  const [singlePost, setSinglePost] = useState(null)
+import NavBar from './Navigation/NavBar';
+
+const SinglePost = () => {
+  const [singlePost, setSinglePost] = useState(null);
   const { slugRoute } = useParams()
+	const [rotate, setRotate] = useState()
 
   useEffect(() => {
     sanityClient.fetch(`*[slugRoute.current == "${slugRoute}"]{
@@ -57,9 +62,32 @@ const App = () => {
     .catch(console.error)
   },[singlePost])
 
+  // const navPostAnim = useSpring({
+  //   opacity: gayVis ? 1 : 1,
+  //   transform: gayVis ? `translateY(0px)` : `translateY(100px)`,
+  // }); 
+
+  //   config: {
+  //       mass: 1,
+  //       tension: 50,
+  //       friction: 12,
+  //     }
+
+	// const rotationAnimation = useSpring({
+	// 	transform: !rotate ? `rotate(0deg)` : `rotate(180deg)`,
+	// });
+
+  // const l = list.length
+// const calc = (x, y) => [-(y - window.innerHeight / 2) / 90, (x - window.innerWidth / 2) / 90, 1.01]
+// const trans = (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
+
+// const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 350, friction: 40 } }))
+
+  console.log(rotate)
+
   return (
-    <div>
-      <div>
+      <Container fluid>
+        <div className="container-section">
         {singlePost &&
           singlePost.map((project, index) => (
               <span key={index}>
@@ -137,9 +165,9 @@ const App = () => {
                   <h3>{project.sectionTitle[9]}</h3>
               </span>
           ))}
-      </div>
-    </div>
+          </div>
+      </Container>
     )
 }
 
-export default App;
+export default SinglePost;

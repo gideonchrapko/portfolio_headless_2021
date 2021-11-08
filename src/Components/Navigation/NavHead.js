@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 const NavHead = () => {
     return (
+        <div>
         <Container fluid className="fixed-top"> 
             <Row style={{ width: "100vw", paddingTop: "20px" }}>
                 <Col
@@ -37,7 +38,8 @@ const NavHead = () => {
                 </Col>
             </Row>
         </Container>
+        </div>
     )
 }
 
-export default NavHead
+export default NavHead;
