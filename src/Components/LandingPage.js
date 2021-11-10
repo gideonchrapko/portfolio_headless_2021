@@ -4,46 +4,23 @@ import { Container, Row, Col, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
 import { SpotLight, Html } from '@react-three/drei';
-import { useTrail, animated, useSpring } from 'react-spring';
+// import { useTrail, animated, useSpring, useSprings } from 'react-spring';
 import BlockContent from '@sanity/block-content-to-react';
+import { motion } from 'framer-motion'
 
 import Controls from './3D/Controls';
 import Model from './3D/SignNeon';
-import NavBar from './Navigation/NavBar';
 
 import ArrowWhite from '../Assets/proj_arrows_white.svg';
-
+import CircleBG from '../Assets/EllipseLanding.svg'
 import '../index.css';
 
-function Trail({ open, children, ...props }) {
-    const items = React.Children.toArray(children)
-    const trail = useTrail(items.length, {
-      config: { mass: 5, tension: 2000, friction: 200 },
-      opacity: open ? 1 : 0,
-      x: open ? 0 : 20,
-      height: open ? 110 : 0,
-      from: { opacity: 0, x: 20, height: 0 },
-    })
-    return (
-      <div className="trails-main" {...props}>
-        <div>
-          {trail.map(({ x, height, ...rest }, index) => (
-            <animated.div
-              key={[index]}
-              className="trails-text"
-              style={{ ...rest, transform: x.interpolate((x) => `translate3d(0,${x}px,0)`) }}>
-              <animated.div style={{ height }}>{items[index]}</animated.div>
-            </animated.div>
-          ))}
-        </div>
-      </div>
-    )
-  }
-
 const LandingPage = () => {
-    const [hovered, setHovered] = useState(false)
+    const [iHovered, setiHovered] = useState(false)
     const [postData, setPostData] = useState(null)
-    const [open, setOpen] = useState(false)
+    const [imgSrc, setImgSrc] = useState(null)
+    // const [open, setOpen] = useState(false)
+    
     // const [rightMenuVisible, setRightMenuVisible] = useState(false);
     // const [stateAnim, setStateAnim] = useState(false)
 
@@ -73,25 +50,23 @@ const LandingPage = () => {
         }`)
         .then((data) => setPostData(data))
         .catch(console.error)
-        setOpen(true)
+        // setOpen(true)
       },[postData])
 
-      const rightMenuAnimation = useSpring({
-        opacity: open ? 1 : 0,
-        config: {
-            duration: 1000
-          }
-      }); 
+      const variants = {
+        open: { width: "40%" },
+        closed: { width: "80%" }
+      }
 
-      const rotationAnimation_Hov = useSpring({
-		transform: !hovered ? `rotate(0deg)` : `rotate(90deg)`,
-	});
+      const variantsRight = {
+        first: { width: "40vw" },
+        second: { width: "0" }
+      }
 
-    const colorAnimation_Hov = useSpring({
-		backgroundColor: !hovered ? "#BAFF00" : "#0AFF00"
-	});
-
-
+      const spring = {
+        duration: 0.4,
+        ease: [0.4, 0.13, 0.23, 0.96]
+      }
 
     return (
         <Container fluid>
@@ -101,10 +76,11 @@ const LandingPage = () => {
                             lg={{ offset: 1, span: 5 }}
                             xs={{ offset: 1, span: 5 }}
                         >
-                            <Trail open={open}>
+                            <div>
                                 <h1 className="nameTitle">Gideon</h1>
                                 <h1 className="nameTitle">Chrapko</h1>
-                            </Trail>
+                            </div>
+                            <img />
                         </Col>
                         <Col lg={6} style={{ height: "100vh", right: "0", position: "absolute", marginTop: "-40vh" }}>
                         <Canvas shadows>
@@ -123,7 +99,7 @@ const LandingPage = () => {
                             lg={{ offset: 1, span: 4 }}
                             xs={{ offset: 1, span: 6 }}
                         >
-                            <animated.h4 style={rightMenuAnimation} className="subheadTitle">UX & UI CASE STUDY ONLINE</animated.h4>
+                            <h4 className="subheadTitle">UX & UI CASE STUDY ONLINE</h4>
                         </Col>
                     </Row>
                     <Row>
@@ -133,7 +109,7 @@ const LandingPage = () => {
                             sm={{ offset: 1, span: 1 }}
                             xs={{ offset: 1, span: 1 }}
                         >
-                            <animated.h1 style={rightMenuAnimation} className="subheadDate">2021</animated.h1>
+                            <h1 className="subheadDate">2021</h1>
                         </Col>
                         <Col
                             lg={{ offset: 0, span: 2 }}
@@ -141,13 +117,13 @@ const LandingPage = () => {
                             sm={{ offset: 0, span: 2 }}
                             xs={{ offset: 0, span: 3 }}
                         >
-                            <animated.h6 style={rightMenuAnimation} className="bodyDescrip">I am currently a third year student enrolled in the Alberta University of the Arts in the Bachelor of Design program.</animated.h6>
+                            <h6 className="bodyDescrip">I am currently a third year student enrolled in the Alberta University of the Arts in the Bachelor of Design program.</h6>
                         </Col>
                         <Col
                             lg={{ offset: 0, span: 2 }}
                             xs={{ offset: 0, span: 3 }}
                         >
-                            <animated.h6 style={rightMenuAnimation} className="bodyDescrip">I currently am working in UI/UX design and development working with several front end technologies and utilizing javascript frameworks such as Reactjs, Threejs and bootstrap.</animated.h6>
+                            <h6 className="bodyDescrip">I currently am working in UI/UX design and development working with several front end technologies and utilizing javascript frameworks such as Reactjs, Threejs and bootstrap.</h6>
                         </Col>
                     </Row>
                 </div>
@@ -155,55 +131,72 @@ const LandingPage = () => {
                 <div className="container-section">
                         {postData &&
                         postData.map((project, index) => (
-                            <animated.div className="gx-3 proj_row row" 
-                                onPointerOver={() => setHovered(true)}
-                                onPointerOut={() => setHovered(false)}
-                                style={colorAnimation_Hov}
+                            <motion.div className="gx-3 proj_row row" 
+                                onMouseEnter={e => {
+                                    setiHovered(index)
+                                    setImgSrc(project.mainImage.asset.url)
+                                }}
+                                onMouseLeave={e => {
+                                    setiHovered(false)
+                                    setImgSrc(null)
+                                }}
+                                animate={iHovered !== false ? "open" : "closed"}
+                                variants={variants}
+                                transition={spring}
+                                style={{backgroundColor: iHovered === index ? "#0AFF00" : "#BAFF00" }}
                                 key={index}
-                                onClick={() => console.log(index)}
                             >
                                 <Col lg={1} className="proj_col" >
-                                    <img src={project.thumbImage.asset.url} alt={project.slugRoute.current} className="proj_img_thumb" />
+                                    <img src={project.thumbImage.asset.url} alt={project.slugRoute.current} className="proj_img_thumb"/>
                                 </Col>
                                 <Col lg={2} className="proj_col" >
-                                    <Link to={"/project/" + project.slugRoute.current} className="proj_header">{project.projectTitle}</Link>
-                                    {index}
+                                    <h1 key={index} to={"/project/" + project.slugRoute.current} className="proj_header">{project.projectTitle}</h1>
                                 </Col>
-                                <Col lg={4} className="proj_description">
-                                    {!hovered ? 
-                                    <BlockContent 
+                                <Col lg={iHovered !== false ? 6 : 4} className="proj_description">
+                                    {index === iHovered ? 
+                                    <h1 className="proj_view_text">View Project</h1>
+                                        : 
+                                     <BlockContent 
                                         blocks={project.projectOverview} 
                                         projectId="kjeh3i1n"
                                         dataset="production"
-                                    /> : 
-                                    <h1 className="proj_view_text">View Project</h1>
+                                    />
                                     }
                                 </Col>
-                                <Col lg={4} className="proj_col">
-                                    <div style={{ 
-                                            backgroundImage: `url(${project.mainImage.asset.url})`, 
-                                            height: "90%", 
-                                            marginTop: "1.7%",
-                                            borderRadius: "20px", 
-                                            backgroundSize: "cover" 
-                                            }} 
-                                            alt={`"${project.slugRoute.current} image"`}
-                                        >
-                                    </div>                                    
+                                <Col lg={iHovered !== false ? 3 : 5} className="proj_col">
+                                    {iHovered !== false ?
+                                        <div> 
+                                        </div> :
+                                        <div style={{ backgroundImage: `url(${project.mainImage.asset.url})` }} 
+                                            alt={`"${project.slugRoute.current} image"`} className="proj_mainImage" > 
+                                        </div>                                   
+                                    }
+                                    <img 
+                                        src={ArrowWhite}   
+                                        alt="arrow" 
+                                        className="proj_arrow" 
+                                        style={{
+                                            transform: iHovered === index ? "rotate(45deg)" : "rotate(0deg)",
+                                            transition: "transform .35s ease-in-out"
+                                            }}
+                                    />                                  
                                 </Col>
-                                <Col lg={1}>
-                                    <animated.img 
-                                            src={ArrowWhite}   
-                                            alt="arrow" 
-                                            className="proj_arrow" 
-                                            key={index}
-                                            style={rotationAnimation_Hov}
-                                    />
-                                </Col>
-                            </animated.div>
+                            </motion.div>
                         ))}
+                        <motion.div 
+                            className="proj_row_img"
+                            variants={variantsRight}
+                            animate={iHovered !== false ? "first" : "second"}
+                            transition={spring}
+                        >
+                            <div 
+                                style={{ backgroundImage: `url(${imgSrc})` }}
+                                alt={`"${imgSrc} image"`}
+                                className="roj_row_img_anim"
+                            >
+                            </div>
+                        </motion.div>
                 </div>
-
                 <div className="container-section conatiner-cv">
                     <Row className="gx-3">
                         <Col lg={{ span: 5, offset: 1 }}>

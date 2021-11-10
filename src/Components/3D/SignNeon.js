@@ -5,13 +5,14 @@ import React, { useRef, useState, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useSpring } from '@react-spring/core'
 import { a } from '@react-spring/three'
+
 export default function Model({ ...props }) {
   const group = useRef()
   const { nodes, materials } = useGLTF('/SignNeon.glb')
-  const [expand, setExpand] = useState(false)
+  const [expand, setExpand] = useState(null)
 
   const rotation = [0, 6, 0]
-  const scale = [0, 0, 0]
+  const scale = [-10, -10, -10]
 
   const [spring, set] = useSpring(() => ({
     scale: [...scale],
@@ -32,7 +33,10 @@ export default function Model({ ...props }) {
   // }, [rotation, set]);
 
       useEffect(() => {
-        set({ rotation: [0, 0, 0], scale: [1.4, 1.4, 1.4] })
+        set({ 
+          scale: [1.4, 1.4, 1.4],
+          rotation: [0, 0, 0],  
+        })
       })
 
   return (

@@ -3,9 +3,6 @@ import { useParams } from 'react-router-dom'
 import sanityClient from '../client';
 import BlockContent from '@sanity/block-content-to-react';
 import { Container, Col, Row } from 'react-bootstrap';
-import { useSpring, animated } from 'react-spring'
-
-import NavBar from './Navigation/NavBar';
 
 const SinglePost = () => {
   const [singlePost, setSinglePost] = useState(null);

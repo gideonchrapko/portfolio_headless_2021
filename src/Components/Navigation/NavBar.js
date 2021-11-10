@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import './nav.css';
-
 const NavBar = () => {
 
 

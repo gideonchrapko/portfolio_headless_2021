@@ -63,13 +63,15 @@ canvas {
 /* Project Section */
 
 .proj_row {
-  width: 80vw; 
+  /* width: 80vw;  */
   left: 10%;
   position: relative;
-  /* background-color: #BAFF00;  */
+  background-color: #BAFF00; 
   border-radius: 30px; 
   border: 3px solid white;
   height: 25vh;
+  cursor: pointer;
+  z-index: 2;
 }
 
 .proj_col {
@@ -90,6 +92,28 @@ canvas {
   text-decoration: none;
 }
 
+.proj_mainImage {
+  height: 90%; 
+  margin-top: 1.7%;
+  border-radius: 20px; 
+  background-size: cover; 
+}
+
+.roj_row_img_anim {
+  background-size: cover; 
+  height: 100%;
+  border-radius: 30px; 
+  border: 3px solid white;
+}
+
+.proj_row_img {
+  width: 40vw; 
+  right: 10%;
+  position: absolute;
+  height: 75vh;
+  top: 0;
+}
+
 .proj_arrow {
   position: absolute;
   bottom: 25px;
@@ -98,7 +122,7 @@ canvas {
 }
 
 .proj_img_thumb {
-  height: 3vh;
+  height: 6vh;
   width: auto;
   position: absolute;
   bottom: 15%;
@@ -107,7 +131,7 @@ canvas {
 
 .proj_description {
   padding: 15px;
-  font-size: clamp(5pt, 5vw, 8pt);
+  font-size: clamp(3pt, 3vw, 8pt);
   line-height: 1.2;
   height: 100%;
   font-family: Helvetica, sans-serif;
@@ -115,9 +139,8 @@ canvas {
 }
 
 .proj_view_text{
-  /* padding: 15px; */
   line-height: 0.85;
-  font-size: clamp(20pt, 10vw, 60pt);
+  font-size: clamp(20pt, 6vw, 40pt);
   color: white;
   font-family: Helvetica, sans-serif;
   font-weight: 700;
