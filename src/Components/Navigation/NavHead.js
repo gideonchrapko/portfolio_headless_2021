@@ -9,8 +9,8 @@ const NavHead = () => {
                 <Col
                     lg={5}
                     md={5}
-                    sm={5}
-                    xs={5}
+                    sm={10}
+                    xs={10}
                     style={{ textAlign: "center"}}
                 >
                    <h1 className="text-nav-head" >UX Designer and Developer</h1>

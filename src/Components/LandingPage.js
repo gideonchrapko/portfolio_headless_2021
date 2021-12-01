@@ -1,31 +1,71 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import sanityClient from '../client';
-import { Container, Row, Col, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
-import { SpotLight, Html } from '@react-three/drei';
+import {  Html, } from '@react-three/drei';
 // import { useTrail, animated, useSpring, useSprings } from 'react-spring';
 import BlockContent from '@sanity/block-content-to-react';
 import { motion } from 'framer-motion'
 
 import Controls from './3D/Controls';
 import Model from './3D/SignNeon';
+import NavHead from './Navigation/NavHead'
 
 import ArrowWhite from '../Assets/proj_arrows_white.svg';
 import CircleBG from '../Assets/EllipseLanding.svg'
+import Avatar from '../Assets/1618532615911.jpg'
 import '../index.css';
+
+const transition = { duration: 0.5, ease: [0.6, 0.01, -0.05, 0.9] };
+
+const firstName = {
+    initial: {
+      y: 20,
+    },
+    animate: {
+      y: 0,
+      transition: {
+        delayChildren: 0.6,
+        staggerChildren: 0.04,
+        staggerDirection: -1,
+      },
+    },
+  };
+  
+  const lastName = {
+    initial: {
+      y: 0,
+      opacity: 0
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        delayChildren: 0.6,
+        staggerChildren: 0.04,
+        staggerDirection: 1,
+      },
+    },
+  };
+  
+  const letter = {
+    initial: {
+      y: 100,
+      opacity: 0,
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 1, ...transition },
+    },
+  };
 
 const LandingPage = () => {
     const [iHovered, setiHovered] = useState(false)
     const [postData, setPostData] = useState(null)
     const [imgSrc, setImgSrc] = useState(null)
-    // const [open, setOpen] = useState(false)
-    
-    // const [rightMenuVisible, setRightMenuVisible] = useState(false);
-    // const [stateAnim, setStateAnim] = useState(false)
-
-    // const [rotate, setRotate] = useState()
-
+    const history = useHistory();
 
     useEffect(() => {
         sanityClient.fetch(`*[_type == "project"]{
@@ -50,7 +90,6 @@ const LandingPage = () => {
         }`)
         .then((data) => setPostData(data))
         .catch(console.error)
-        // setOpen(true)
       },[postData])
 
       const variants = {
@@ -63,30 +102,79 @@ const LandingPage = () => {
         second: { width: "0" }
       }
 
-      const spring = {
-        duration: 0.4,
-        ease: [0.4, 0.13, 0.23, 0.96]
-      }
+      const spring = { duration: 1, ease: [0.4, 0.13, 0.23, 0.96]}
 
     return (
+        <motion.div 
+            initial='initial'
+            animate='animate'
+            exit='exit'
+        >
+        <NavHead/>
         <Container fluid>
-            <div className="container-section">
-                    <Row>
-                        <Col
-                            lg={{ offset: 1, span: 5 }}
-                            xs={{ offset: 1, span: 5 }}
-                        >
-                            <div>
-                                <h1 className="nameTitle">Gideon</h1>
-                                <h1 className="nameTitle">Chrapko</h1>
-                            </div>
-                            <img />
+            <motion.div 
+                className="container-section"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+            >      
+                <Row>
+                    <Col 
+                        lg={{ span: 1, offset: 1}}
+                        md={{ span: 1, offset: 1}}
+                        sm={{ span: 4, offset: 1}}
+                        xs={{ span: 3, offset: 1}}
+                    >
+                        <img 
+                            src={Avatar}
+                            className="avatar-img"
+                            alt="Avatar"
+                        />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col
+                        lg={{ offset: 1, span: 5 }}
+                        xs={{ offset: 1, span: 5 }}
+                    >
+                    <motion.div className='model'>
+                        <motion.span className='first' variants={firstName}>
+                            <motion.span variants={letter}>G</motion.span>
+                            <motion.span variants={letter}>i</motion.span>
+                            <motion.span variants={letter}>d</motion.span>
+                            <motion.span variants={letter}>e</motion.span>
+                            <motion.span variants={letter}>o</motion.span>
+                            <motion.span variants={letter}>n</motion.span>
+                        </motion.span><br/>
+                        <motion.span className='last' variants={lastName}>
+                            <motion.span variants={letter}>C</motion.span>
+                            <motion.span variants={letter}>h</motion.span>
+                            <motion.span variants={letter}>r</motion.span>
+                            <motion.span variants={letter}>a</motion.span>
+                            <motion.span variants={letter}>p</motion.span>
+                            <motion.span variants={letter}>k</motion.span>
+                            <motion.span variants={letter}>o</motion.span>
+                        </motion.span>
+                        </motion.div>
                         </Col>
-                        <Col lg={6} style={{ height: "100vh", right: "0", position: "absolute", marginTop: "-40vh" }}>
+                        <Col lg={6}
+                            md={6}
+                            sm={12}
+                            xs={12}
+                            style={{ height: "100vh", right: "0", position: "absolute", marginTop: "-40vh" }}
+                        >
+                            <img 
+                                src={CircleBG} 
+                                style={{
+                                    height: "40vw",
+                                    minHeight: "200px",
+                                    width: "auto",
+                                    position: "absolute",
+                                }}
+                            />
                         <Canvas shadows>
-                            <color attach="background" args={['white']}/>
                                 <Suspense fallback={<Html center>...Loading</Html>}>
-                                        <pointLight position={[0, 1, 0]} intensity={1} color={'white'} />
+                                        <pointLight position={[0, 1, 0]} intensity={1} color={'#BAFF00'} />
                                         <ambientLight intensity={3} />
                                             <Model position={[0, 1.3, 0]} />
                                         <Controls />
@@ -126,9 +214,13 @@ const LandingPage = () => {
                             <h6 className="bodyDescrip">I currently am working in UI/UX design and development working with several front end technologies and utilizing javascript frameworks such as Reactjs, Threejs and bootstrap.</h6>
                         </Col>
                     </Row>
-                </div>
+                </motion.div>
 
                 <div className="container-section">
+                    <div
+                        onMouseLeave={() => setiHovered(false)}
+                        // style={{ backgroundColor: "red"}}
+                    >
                         {postData &&
                         postData.map((project, index) => (
                             <motion.div className="gx-3 proj_row row" 
@@ -136,15 +228,12 @@ const LandingPage = () => {
                                     setiHovered(index)
                                     setImgSrc(project.mainImage.asset.url)
                                 }}
-                                onMouseLeave={e => {
-                                    setiHovered(false)
-                                    setImgSrc(null)
-                                }}
                                 animate={iHovered !== false ? "open" : "closed"}
                                 variants={variants}
                                 transition={spring}
                                 style={{backgroundColor: iHovered === index ? "#0AFF00" : "#BAFF00" }}
                                 key={index}
+                                onClick={() => history.push(`project/${project.slugRoute.current}`)}
                             >
                                 <Col lg={1} className="proj_col" >
                                     <img src={project.thumbImage.asset.url} alt={project.slugRoute.current} className="proj_img_thumb"/>
@@ -168,7 +257,9 @@ const LandingPage = () => {
                                         <div> 
                                         </div> :
                                         <div style={{ backgroundImage: `url(${project.mainImage.asset.url})` }} 
-                                            alt={`"${project.slugRoute.current} image"`} className="proj_mainImage" > 
+                                            alt={`"${project.slugRoute.current} image"`} className="proj_mainImage" 
+                                            onMouseEnter={() => console.log(postData.index)}
+                                        >
                                         </div>                                   
                                     }
                                     <img 
@@ -196,6 +287,7 @@ const LandingPage = () => {
                             >
                             </div>
                         </motion.div>
+                    </div>
                 </div>
                 <div className="container-section conatiner-cv">
                     <Row className="gx-3">
@@ -218,7 +310,6 @@ const LandingPage = () => {
                                     <h3 className="work-exp-sub">2022, CALGARY</h3>
                                     <h6 className="work-exp-body">Works featured in My Graphic DNA as well as Geo Graphics.</h6>
                                 </div>
-
                         </Col>
                     </Row>
                     <Row className="gx-3">
@@ -253,6 +344,7 @@ const LandingPage = () => {
                     </Row>
                 </div>
         </Container>
+        </motion.div>
     )
 }
 

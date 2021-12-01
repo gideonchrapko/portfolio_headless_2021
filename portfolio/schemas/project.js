@@ -58,6 +58,11 @@ export default {
             of: [{type: "string"}]
         },
         {
+          name: "personaOverview",
+          title: "Persona Overview",
+          type: "blockContent"
+      },
+        {
             name: 'personaImage1',
             title: 'Person Image 1',
             type: 'image',

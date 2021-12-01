@@ -20,7 +20,7 @@
 }
 
 .text-nav-head {
-    font-size: clamp(8pt, 2vw, 20pt);
+    font-size: clamp(15pt, 2vw, 20pt);
     font-family: Helvetica, sans-serif;
     font-weight: 600;
     font-style: normal;

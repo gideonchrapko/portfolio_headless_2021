@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -6,8 +10,6 @@ body {
 }
 
 canvas {
-  /* height: 100vh;
-  width: 100vw; */
   outline: none;
   z-index: 0;
 }
@@ -18,8 +20,14 @@ canvas {
   height: 100vh;
 }
 
+.container-section-project {
+  position: relative;
+  top: 10vh;
+  height: 100vh;
+}
+
 .conatiner-cv {
-  padding-top: 15vh;
+  padding-top: 20vh;
 }
 
 .nameTitle {
@@ -29,6 +37,39 @@ canvas {
   font-style: normal;
   line-height: 0.8;
   color: black;
+}
+
+.name_div{
+  overflow: hidden;
+  transform: translateY(-90px);
+}
+
+.first span{ 
+  display: inline-block;
+  position: relative;
+  font-size: clamp(25pt, 8.5vw, 120pt);
+  font-family: Helvetica, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 0.8;
+  color: black;
+  transform: translateY(-50px)
+}
+
+.last span{ 
+  display: inline-block;
+  position: relative;
+  font-size: clamp(25pt, 8.5vw, 120pt);
+  font-family: Helvetica, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 0.8;
+  color: black;
+  transform: translateY(-50px)
+}
+
+.model {
+  position: relative;
 }
 
 .subheadTitle {
@@ -60,10 +101,16 @@ canvas {
   border-top: 1px solid black;
 }
 
+.avatar-img {
+  border-radius: 100px; 
+  width: 100%; 
+  height: auto;
+  margin-top: -15vh;
+}
+
 /* Project Section */
 
 .proj_row {
-  /* width: 80vw;  */
   left: 10%;
   position: relative;
   background-color: #BAFF00; 
@@ -104,6 +151,7 @@ canvas {
   height: 100%;
   border-radius: 30px; 
   border: 3px solid white;
+  cursor: pointer;
 }
 
 .proj_row_img {
@@ -210,7 +258,40 @@ canvas {
   position: fixed;
   cursor: pointer;
 	right: 22%;
-	/* margin-right: -50%; */
 	float: right;
   background-color: black;
+}
+
+/* Single Project Section */
+
+.sing_proj_persona {
+  border-radius: 20px;
+  border: solid 2px black;
+}
+
+.sing_proj_headerimg {
+  border-radius: 20px;
+  background-size: cover;
+  height: 50vh;
+  width: 100%;
+  background-position: center;
+}
+
+.sing_proj_headerTitle {
+  font-size: 40pt;  
+  font-family: Helvetica, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  color: white;
+  padding: 20px;
+  width: 40%;
+}
+
+.sing-proj-head {
+  padding-top: 5%;
+  font-size: 15pt;  
+  font-family: Helvetica, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  color: black;
 }
