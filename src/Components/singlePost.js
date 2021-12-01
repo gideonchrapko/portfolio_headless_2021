@@ -59,6 +59,8 @@ const SinglePost = () => {
     .catch(console.error)
   },[singlePost])
 
+  console.log("fuxk")
+
   return (
       <Container fluid>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="container-section-project">
