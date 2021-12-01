@@ -8,7 +8,7 @@ import {motion} from 'framer-motion';
 const SinglePost = () => {
   const [singlePost, setSinglePost] = useState(null);
   const { slugRoute } = useParams()
-	const [rotate, setRotate] = useState()
+	// const [rotate, setRotate] = useState()
 
   useEffect(() => {
     sanityClient.fetch(`*[slugRoute.current == "${slugRoute}"]{
