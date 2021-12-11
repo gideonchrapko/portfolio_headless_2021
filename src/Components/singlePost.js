@@ -5,6 +5,9 @@ import BlockContent from '@sanity/block-content-to-react';
 import { Container, Col, Row } from 'react-bootstrap';
 import {motion} from 'framer-motion';
 
+import NavHead from './Navigation/NavHead';
+import NavBar from './Navigation/NavBar';
+
 const SinglePost = () => {
   const [singlePost, setSinglePost] = useState(null);
   const { slugRoute } = useParams()
@@ -53,16 +56,29 @@ const SinglePost = () => {
         },
         alt
       },
+      informationHierarchy,
+      informationHierarchyImg{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
     }`)
-
+		// window.scrollTo(0,0)
     .then((data) => setSinglePost(data))
     .catch(console.error)
   },[singlePost])
 
-  console.log("fuxk")
-
   return (
+    <motion.div
+    initial='initial'
+    animate='animate'
+    exit='exit'
+    >
       <Container fluid>
+        <NavHead />
+          <NavBar slugRoute={slugRoute} />
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="container-section-project">
         {singlePost &&
           singlePost.map((project, index) => (
@@ -86,7 +102,7 @@ const SinglePost = () => {
                 <Row className="gx-3">
                       <Col lg={{ span: 2, offset: 1 }}>
                           <h6 className="cv_title">ROLE</h6>
-                          <div className="modular-cont">
+                          <div className="sing-proj-modular-cont">
                           {project.role &&
                               project.role.map((index) => (
                               <li key={index}>{index}</li>
@@ -95,7 +111,7 @@ const SinglePost = () => {
                        </Col>
                       <Col lg={2}>
                               <h6 className="cv_title">TOOLS</h6>
-                              <div className="modular-cont">
+                              <div className="sing-proj-modular-cont">
                                {project.tools &&
                                   project.tools.map((index) => (
                                   <li key={index}>{index}</li>
@@ -104,7 +120,7 @@ const SinglePost = () => {
                        </Col>
                        <Col lg={6}>
                          <h6 className="cv_title">PROJECT OVERVIEW</h6>
-                          <div className="modular-cont">
+                          <div className="sing-proj-modular-cont">
                              <BlockContent 
                                 blocks={project.projectOverview} 
                                 projectId="kjeh3i1n"
@@ -125,7 +141,7 @@ const SinglePost = () => {
                   </Row>
                   <Row className="gx-3">
                         <Col lg={{ span: 10, offset: 1 }}>
-                             <div className="modular-cont">
+                             <div className="sing-proj-modular-cont">
                                <BlockContent 
                                   blocks={project.experienceMapOverview} 
                                   projectId="kjeh3i1n"
@@ -141,7 +157,7 @@ const SinglePost = () => {
                               src={project.personaImage1.asset.url} 
                               alt={project.projectTitle} 
                               className="sing_proj_persona"
-                              style={{ height: "auto", width: "26.7vw"}} 
+                              style={{ height: "auto", width: "25vw"}} 
                              />                  
                              :
                              <span></span>
@@ -151,7 +167,7 @@ const SinglePost = () => {
                               src={project.personaImage2.asset.url} 
                               alt={project.projectTitle} 
                               className="sing_proj_persona"
-                              style={{ height: "auto", width: "26.7vw"}} 
+                              style={{ height: "auto", width: "25vw"}} 
                              />                  
                              :
                              <span></span>
@@ -161,7 +177,7 @@ const SinglePost = () => {
                               src={project.personaImage3.asset.url} 
                               alt={project.projectTitle} 
                               className="sing_proj_persona"
-                              style={{ height: "auto", width: "26.7vw"}} 
+                              style={{ height: "auto", width: "25vw"}} 
                              />                  
                              :
                              <span></span>
@@ -175,7 +191,7 @@ const SinglePost = () => {
                     </Row>
                     <Row className="gx-3">
                           <Col lg={{ span: 10, offset: 1 }}>
-                              <div className="modular-cont">
+                              <div className="sing-proj-modular-cont">
                                 <BlockContent 
                                     blocks={project.experienceMapOverview} 
                                     projectId="kjeh3i1n"
@@ -185,11 +201,50 @@ const SinglePost = () => {
                           </Col>
                       </Row>
                       <Row>
-                        <Col lg={{ span: 10, }}>
+                        <Col lg={{ span: 10, offset: 1}}>
+                        {project.experienceMap ? 
+                              <img 
+                                src={project.experienceMap.asset.url}
+                                style={{ width: "80%", left: "10%", position: "relative" }}
+                                className="sing_proj_experience"
+                              />                
+                             :
+                             <span></span>
+                          }  
                         </Col>
+                    </Row>
+                    <Row>
+                      <Col lg={{ span: 10, offset: 1}}>
+                        <h1 className="sing-proj-head">{project.sectionTitle[4]}</h1>
+                      </Col>
+                    </Row>
+                      <Row className="gx-3">
+                          <Col lg={{ span: 10, offset: 1 }}>
+                              <div className="sing-proj-modular-cont">
+                                <BlockContent 
+                                    blocks={project.informationHierarchy} 
+                                    projectId="kjeh3i1n"
+                                    dataset="production"
+                                  />
+                              </div>
+                          </Col>
                       </Row>
-                  <h3>{project.sectionTitle[4]}</h3>
-                  <h3>{project.sectionTitle[5]}</h3>
+                      <Row>
+                      <Col lg={{ span: 10, offset: 1}}>
+                        <h1 className="sing-proj-head">{project.sectionTitle[5]}</h1>
+                      </Col>
+                    </Row>
+                      <Row className="gx-3">
+                          <Col lg={{ span: 10, offset: 1 }}>
+                              <div className="sing-proj-modular-cont">
+                                <BlockContent 
+                                    blocks={project.informationHierarchy} 
+                                    projectId="kjeh3i1n"
+                                    dataset="production"
+                                  />
+                              </div>
+                          </Col>
+                      </Row>
                   <h3>{project.sectionTitle[6]}</h3>
                   <h3>{project.sectionTitle[7]}</h3>
                   <h3>{project.sectionTitle[8]}</h3>
@@ -198,6 +253,7 @@ const SinglePost = () => {
           ))}
           </motion.div>
       </Container>
+      </motion.div>
     )
 }
 

@@ -3,18 +3,18 @@ import sanityClient from '../client';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
-import {  Html, } from '@react-three/drei';
-// import { useTrail, animated, useSpring, useSprings } from 'react-spring';
+import { Html } from '@react-three/drei';
 import BlockContent from '@sanity/block-content-to-react';
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 
 import Controls from './3D/Controls';
 import Model from './3D/SignNeon';
-import NavHead from './Navigation/NavHead'
+import NavHead from './Navigation/NavHead';
+import NavBar from './Navigation/NavBar';
 
 import ArrowWhite from '../Assets/proj_arrows_white.svg';
-import CircleBG from '../Assets/EllipseLanding.svg'
-import Avatar from '../Assets/1618532615911.jpg'
+import CircleBG from '../Assets/EllipseLanding.svg';
+import Avatar from '../Assets/1618532615911.jpg';
 import '../index.css';
 
 const transition = { duration: 0.5, ease: [0.6, 0.01, -0.05, 0.9] };
@@ -111,7 +111,8 @@ const LandingPage = () => {
             exit='exit'
         >
         <NavHead/>
-        <Container fluid>
+        <NavBar/>
+        <Container fluid >
             <motion.div 
                 className="container-section"
                 initial={{ opacity: 0 }}

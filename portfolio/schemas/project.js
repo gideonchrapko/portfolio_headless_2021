@@ -99,5 +99,18 @@ export default {
               hotspot: true,
             },
           },
+          {
+            name: "informationHierarchy",
+            title: "Information Hierarchy",
+            type: "blockContent"
+        },
+        {
+          name: 'informationHierarchyImg',
+          title: 'Information Hierarchy Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        },
     ]
 }

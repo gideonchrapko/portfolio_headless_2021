@@ -266,8 +266,26 @@ canvas {
 
 .sing_proj_persona {
   border-radius: 20px;
-  border: solid 2px black;
+  border: solid 3px black;
+  margin: 10px;
+  /* width: 80%;
+  left: 10%;
+  position: relative; */
 }
+
+.sing_proj_experience {
+  border-radius: 20px;
+  border: solid 3px black;
+  margin: 10px;
+  width: 80%;
+  left: 10%;
+  position: relative;
+}
+
+/* .sing_proj_persona {
+  border-radius: 20px;
+  border: solid 3px black;
+} */
 
 .sing_proj_headerimg {
   border-radius: 20px;
@@ -288,10 +306,17 @@ canvas {
 }
 
 .sing-proj-head {
-  padding-top: 5%;
+  padding-top: 10%;
   font-size: 15pt;  
   font-family: Helvetica, sans-serif;
   font-weight: 700;
   font-style: normal;
   color: black;
+  top: 10vh;
 }
+
+.sing-proj-modular-cont {
+  border-top: 1px solid black;
+  top: 10vh;
+}
+

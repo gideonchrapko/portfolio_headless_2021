@@ -15,6 +15,26 @@ export default function Model({ ...props }) {
   const rotation = [0, 6, 0]
   const scale = [-10, -10, -10]
 
+  const animatedProps = useSpring({
+    hovered: expand ? [size + 0.2, size + 0.2, size + 0.2] : [size, size, size]
+  });
+
+  useEffect(() => {
+    const size = document.documentElement.clientWidth / 150
+    if (size <= 6 ) {
+      return setMaxSize(0.6)
+    } 
+    if (size >= 6 ) {
+      return setMaxSize(1.2)
+    }
+},[])
+
+useEffect(() => {
+  set({ 
+    rotation: [0, 0, 0],  
+  })
+},[])
+
   const [spring, set] = useSpring(() => ({
     scale: [...scale],
     rotation: [...rotation],
@@ -25,26 +45,6 @@ export default function Model({ ...props }) {
     },
   }))
 
-  const animatedProps = useSpring({
-    hovered: expand ? [size + 0.2, size + 0.2, size + 0.2] : [size, size, size]
-  });
-
-      useEffect(() => {
-        const size = document.documentElement.clientWidth / 150
-
-        set({ 
-          rotation: [0, 0, 0],  
-        })
-
-        if (size <= 6 ) {
-          return setMaxSize(0.6)
-        } 
-        if (size >= 6 ) {
-          return setMaxSize(1.2)
-        }
-      })
-
-      // console.log(size)
 
   return (
     <a.group 
