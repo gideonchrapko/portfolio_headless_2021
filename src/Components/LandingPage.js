@@ -324,12 +324,12 @@ const LandingPage = () => {
                                     </div>
                                     <div className="work-exp-col">
                                         <h1 className="work-exp-head" >WEST COAST CUSTOMS</h1>
-                                        <h3 className="work-exp-sub" >2018–2019, LOS ANGELES</h3>
+                                        <h3 className="work-exp-sub" >2020-PRESENT, REMOTE</h3>
                                         <h6 className="work-exp-body">I have provided assets for sites such as ASAP Rocky’s e-commerce awgeshit.com and continually manage West Coast Customs Ryan Friedlinghaus’ sons CMS web pages providing assets and working closely with Shopify Liquid developers to customize the Shopify sites. Additionally I have been able to work and create EP covers for Billboard 100 musicians and frequently take on brand and identity projects.</h6>
                                     </div>
                                     <div className="work-exp-col">
                                         <h1 className="work-exp-head" >THE JUICE IOS APPLICATION</h1>
-                                        <h3 className="work-exp-sub" >2018–2019, LOS ANGELES</h3>
+                                        <h3 className="work-exp-sub" >2020–2021, REMOTE</h3>
                                         <h6 className="work-exp-body">I utilized rapid prototyping with InVision, mocking up transitions and animations while I worked side by side Front End Developers to match exact wireframes and font sizes to the pixel. Throughout the application I created Lottie json animations for on-boarding screens, loading screens and UI assets and during beta testing stages of the app I was able to reach out and speak with users future users of the app.</h6>
                                     </div>
                                 </div>
