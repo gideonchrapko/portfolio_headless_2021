@@ -3,7 +3,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import { AnimatePresence } from "framer-motion";
 
 import LandingPage from './LandingPage'
-import SinglePost from './SinglePost'
+import SinglePost from './singlePost'
 import NotFound from './NotFound'
 // import NavHead from './Navigation/NavHead';
 // import NavBar from './Navigation/NavBar';
