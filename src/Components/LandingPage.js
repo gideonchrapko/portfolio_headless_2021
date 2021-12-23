@@ -13,7 +13,6 @@ import NavHead from './Navigation/NavHead';
 import NavBar from './Navigation/NavBar';
 
 import ArrowWhite from '../Assets/proj_arrows_white.svg';
-import CircleBG from '../Assets/EllipseLanding.svg';
 import Avatar from '../Assets/1618532615911.jpg';
 import '../index.css';
 
@@ -114,7 +113,7 @@ const LandingPage = () => {
         <NavBar/>
         <Container fluid >
             <motion.div 
-                className="container-section"
+                className="container-section child"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -164,31 +163,22 @@ const LandingPage = () => {
                             xs={12}
                             style={{ height: "100vh", right: "0", position: "absolute", marginTop: "-40vh" }}
                         >
-                            <img 
-                                src={CircleBG} 
-                                style={{
-                                    height: "40vw",
-                                    minHeight: "200px",
-                                    width: "auto",
-                                    position: "absolute",
-                                }}
-                            />
                         <Canvas shadows>
-                                <Suspense fallback={<Html center>...Loading</Html>}>
-                                        <pointLight position={[0, 1, 0]} intensity={1} color={'#BAFF00'} />
-                                        <ambientLight intensity={3} />
-                                            <Model position={[0, 1.3, 0]} />
-                                        <Controls />
-                                </Suspense>
+                            <Suspense fallback={<Html center>...Loading</Html>}>
+                                <pointLight position={[0, 1, 0]} intensity={1} color={'white'} />                                
+                                <ambientLight intensity={3} />
+                                <Model position={[0, 1.3, 0]} />
+                                <Controls />
+                            </Suspense>
 			            </Canvas>
                         </Col>
                     </Row>
-                    <Row style={{ marginTop: "-10px"}} >
+                    <Row style={{ marginTop: "-10px"}}>
                         <Col
                             lg={{ offset: 1, span: 4 }}
                             xs={{ offset: 1, span: 6 }}
                         >
-                            <h4 className="subheadTitle">UX & UI CASE STUDY ONLINE</h4>
+                            <h4 className="subheadTitle">UX & UI CASE STUDY</h4>
                         </Col>
                     </Row>
                     <Row>
@@ -216,12 +206,9 @@ const LandingPage = () => {
                         </Col>
                     </Row>
                 </motion.div>
-
-                <div className="container-section">
-                    <div
-                        onMouseLeave={() => setiHovered(false)}
-                        // style={{ backgroundColor: "red"}}
-                    >
+                {/* <div className="container-section child" style={{ marginTop: "-30vh" }}> */}
+                <div className="container-section child">
+                    <div onMouseLeave={() => setiHovered(false)} style={{ paddingTop: "10vh" }}>
                         {postData &&
                         postData.map((project, index) => (
                             <motion.div className="gx-3 proj_row row" 
@@ -290,7 +277,8 @@ const LandingPage = () => {
                         </motion.div>
                     </div>
                 </div>
-                <div className="container-section conatiner-cv">
+                <div className="container-section conatiner-cv child">
+                {/* <div className="container-section conatiner-cv child" style={{ marginTop: "-20vh" }} > */}
                     <Row className="gx-3">
                         <Col lg={{ span: 5, offset: 1 }}>
                             <h6 className="cv_title">CONTACT</h6>

@@ -1,5 +1,9 @@
 html {
-  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory
+}
+
+.child {
+  scroll-snap-align: start;
 }
 
 body {
@@ -12,11 +16,12 @@ body {
 canvas {
   outline: none;
   z-index: 0;
+  height: 50vh
 }
 
 .container-section {
   position: relative;
-  top: 40vh;
+  /* top: 40vh; */
   height: 100vh;
 }
 
@@ -70,6 +75,7 @@ canvas {
 
 .model {
   position: relative;
+  margin-top: 5vh;
 }
 
 .subheadTitle {
@@ -105,7 +111,7 @@ canvas {
   border-radius: 100px; 
   width: 100%; 
   height: auto;
-  margin-top: -15vh;
+  margin-top: 30vh;
 }
 
 /* Project Section */
@@ -144,6 +150,7 @@ canvas {
   margin-top: 1.7%;
   border-radius: 20px; 
   background-size: cover; 
+  background-position: center;
 }
 
 .roj_row_img_anim {
@@ -320,3 +327,11 @@ canvas {
   top: 10vh;
 }
 
+.sing-proj-thumb {
+    height: 6vh;
+    width: auto;
+    position: relative;
+    bottom: 0;
+    left: 2%;
+    filter: invert(100%) sepia(2%) saturate(6%) hue-rotate(327deg) brightness(104%) contrast(101%)
+}

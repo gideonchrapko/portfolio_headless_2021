@@ -1,29 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import sanityClient from '../../client';
 import { motion } from 'framer-motion';
 import Arrow from '../../Assets/proj_arrows_white.svg'
 
 import './nav.css';
 
-const NavBar = ({slugRoute}) => {
+const NavBar = ({slugRoute, postData}) => {
     const [route, setRoute] = useState()
-    const [postData, setPostData] = useState(null)
-    // const [sanityRoute, setSanityRoute] = useState()
     const [menuVisible, setMenuVisible] = useState(false);
     const history = useHistory();
     const path = history.location.pathname
     const newString = path.replace('/', '');
     const pathString = newString.substring(0,7)
-
     const spring = { duration: 0.5, ease: [0.4, 0.13, 0.23, 0.96]}
+    const [titleIndex, setTitleIndex] = useState(null)
 
     useEffect(() => {
-        setMenuVisible(true)
+        if(postData === null){
+            console.log("postdata null")
+        } else {
+            setTitleIndex(postData && postData.findIndex(project => project.slugRoute.current === slugRoute))
+        }
+    },[postData])
+
+    const titleIndexLength = postData && postData.length - 1
+
+    useEffect(() => {
+        setMenuVisible(!menuVisible)
+        window.scrollTo(0,0)
+        console.log(titleIndex, "titleIndex")
       },[])
 
       useEffect(() => {
+            // this needs to be reworked for 404 pages 
             if (pathString === "project") {
                 setRoute("project")
             } else {
@@ -31,15 +41,38 @@ const NavBar = ({slugRoute}) => {
             }
       },[route])
 
-      useEffect(() => {
-        sanityClient.fetch(`*[_type == "project"]{
-            slugRoute,
-        }`)
-        .then((data) => setPostData(data))
-        .catch(console.error)
-      },[postData])
+        function handleHoverLeft() {
+            if(titleIndex > 0){
+                setTitleIndex(titleIndex - 1)
+            } 
+            if (titleIndex === 0) {
+                setTitleIndex(titleIndexLength)
+            }
+        }
 
-    //   project.slugRoute.current
+        function handleOutLeft() {
+            if(titleIndex === titleIndexLength){
+                setTitleIndex(0)
+            } else {
+                setTitleIndex(titleIndex + 1)
+            }
+        }
+
+        function handleHoverRight() {
+            if(titleIndex < titleIndexLength) {
+                setTitleIndex(titleIndex + 1)
+            } else {
+                setTitleIndex(0)
+            }
+        }
+
+        function handleOutRight() {
+            if(titleIndex === 0) {
+                setTitleIndex(titleIndex + titleIndexLength)
+            } else {
+                setTitleIndex(titleIndex - 1)
+            }
+        }
 
     return (
         <motion.div
@@ -65,14 +98,46 @@ const NavBar = ({slugRoute}) => {
                          </>
                          :
                          <>
-                            <Col lg={2} xs={2} style={{ textAlign: "center"}}>
-                                <a className="nav-text" href="#"><img src={Arrow} style={{ height: '5vh', width:"auto", transform: "rotate(225deg)" }}/></a>
+                            <Col 
+                                lg={2} 
+                                xs={2} 
+                                style={{ textAlign: "center" }} 
+                            >
+                                <a className="nav-text" href="#">
+                                    <img 
+                                        src={Arrow} 
+                                        className="nav-arrow" 
+                                        style={{ transform: "rotate(225deg)" }}
+                                        onPointerOver={() => handleHoverLeft()}
+                                        onPointerOut={() => handleOutLeft()}
+                                        onClick={() => history.push(`/project/${postData[titleIndex].slugRoute.current}`) }
+                                    />
+                                </a>
                             </Col> 
                             <Col lg={4} xs={4} style={{ textAlign: "center"}}>
-                                <a className="nav-text" href="#">{slugRoute}</a>
+                                <a className="nav-text" href="#">
+                                    {titleIndex !== null ?
+                                        postData[titleIndex && titleIndex].projectTitle
+                                        :
+                                        "...Loading"
+                                    }
+                                </a>
                             </Col>
-                            <Col lg={2} xs={2} style={{ textAlign: "center"}}>
-                                <a className="nav-text" href="#"><img src={Arrow} style={{ height: '5vh', width:"auto", transform: "rotate(45deg)" }}/></a>
+                            <Col 
+                                lg={2} 
+                                xs={2} 
+                                style={{ textAlign: "center" }}
+                            >
+                                <a className="nav-text" href="#">
+                                    <img   
+                                        src={Arrow} 
+                                        className="nav-arrow" 
+                                        style={{ transform: "rotate(45deg)" }}
+                                        onPointerOver={() => handleHoverRight()}
+                                        onPointerOut={() => handleOutRight()}
+                                        onClick={() => history.push(`/project/${postData[titleIndex].slugRoute.current}`) }
+                                    />
+                                </a>
                             </Col> 
                         </>
                     }

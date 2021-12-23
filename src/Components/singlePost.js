@@ -11,10 +11,19 @@ import NavBar from './Navigation/NavBar';
 const SinglePost = () => {
   const [singlePost, setSinglePost] = useState(null);
   const { slugRoute } = useParams()
+  // const [tldr, setTldr] = useState(false)
+  const [postData, setPostData] = useState(null)
 
   useEffect(() => {
     sanityClient.fetch(`*[slugRoute.current == "${slugRoute}"]{
       mainImage{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      thumbImage{
         asset->{
           _id,
           url
@@ -65,10 +74,18 @@ const SinglePost = () => {
         alt
       },
     }`)
-		// window.scrollTo(0,0)
     .then((data) => setSinglePost(data))
     .catch(console.error)
   },[singlePost])
+
+  useEffect(() => {
+    sanityClient.fetch(`*[_type == "project"]{
+        slugRoute,
+        projectTitle,
+    }`)
+    .then((data) => setPostData(data))
+    .catch(console.error)
+  },[])
 
   return (
     <motion.div
@@ -78,8 +95,11 @@ const SinglePost = () => {
     >
       <Container fluid>
         <NavHead />
-          <NavBar slugRoute={slugRoute} />
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="container-section-project">
+        <NavBar 
+          slugRoute={slugRoute} 
+          postData={postData}
+        />
+        <motion.div className="container-section-project">
         {singlePost &&
           singlePost.map((project, index) => (
               <span key={index}>
@@ -91,11 +111,12 @@ const SinglePost = () => {
                       className="sing_proj_headerimg"
                     >
                       <h1 className="sing_proj_headerTitle">{project.projectTitle}</h1>
+                      <img src={project.thumbImage.asset.url} alt={`${project.projectTitle} logo`} className="sing-proj-thumb" />
                     </div>
                   </Col>
                 </Row>
                 <Row>
-                   <Col lg={{ span: 10, offset: 1}}>
+                   <Col lg={{ span: 10, offset: 1}} style={{ marginTop: "-10vh" }}>
                      <h1 className="sing-proj-head">{project.sectionTitle[0]}</h1>
                   </Col>
                 </Row>
@@ -174,10 +195,10 @@ const SinglePost = () => {
                           }
                           {project.personaImage3 ? 
                              <img 
-                              src={project.personaImage3.asset.url} 
-                              alt={project.projectTitle} 
-                              className="sing_proj_persona"
-                              style={{ height: "auto", width: "25vw"}} 
+                                src={project.personaImage3.asset.url} 
+                                alt={project.projectTitle} 
+                                className="sing_proj_persona"
+                                style={{ height: "auto", width: "25vw"}} 
                              />                  
                              :
                              <span></span>
@@ -207,6 +228,7 @@ const SinglePost = () => {
                                 src={project.experienceMap.asset.url}
                                 style={{ width: "80%", left: "10%", position: "relative" }}
                                 className="sing_proj_experience"
+                                alt="experience map"
                               />                
                              :
                              <span></span>

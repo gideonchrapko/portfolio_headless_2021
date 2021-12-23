@@ -19,6 +19,18 @@
     cursor: pointer;
 }
 
+.nav-text:hover {
+    display:inline-block;
+    padding: 20px 0px 20px 0px;
+    font-size: clamp(15pt, 3vw, 20pt);
+    font-family: Helvetica, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .text-nav-head {
     font-size: clamp(15pt, 2vw, 20pt);
     font-family: Helvetica, sans-serif;
@@ -30,4 +42,9 @@
 
 .link {
     cursor: pointer;
+}
+
+.nav-arrow {
+    height: 5vh;
+    width: auto;
 }

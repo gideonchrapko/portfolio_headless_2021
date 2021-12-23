@@ -5,8 +5,6 @@ import { AnimatePresence } from "framer-motion";
 import LandingPage from './LandingPage'
 import SinglePost from './singlePost'
 import NotFound from './NotFound'
-// import NavHead from './Navigation/NavHead';
-// import NavBar from './Navigation/NavBar';
 
 function App() {
   return (
