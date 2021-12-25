@@ -206,9 +206,8 @@ const LandingPage = () => {
                         </Col>
                     </Row>
                 </motion.div>
-                {/* <div className="container-section child" style={{ marginTop: "-30vh" }}> */}
-                <div className="container-section child">
-                    <div onMouseLeave={() => setiHovered(false)} style={{ paddingTop: "10vh" }}>
+                <div className="container-section child" style={{ paddingTop: "10vh" }}>
+                    <div onMouseLeave={() => setiHovered(false)}>
                         {postData &&
                         postData.map((project, index) => (
                             <motion.div className="gx-3 proj_row row" 
@@ -267,6 +266,7 @@ const LandingPage = () => {
                             variants={variantsRight}
                             animate={iHovered !== false ? "first" : "second"}
                             transition={spring}
+                            style={{ paddingTop: "10vh" }}
                         >
                             <div 
                                 style={{ backgroundImage: `url(${imgSrc})` }}

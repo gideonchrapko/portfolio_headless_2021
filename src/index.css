@@ -122,7 +122,7 @@ canvas {
   background-color: #BAFF00; 
   border-radius: 30px; 
   border: 3px solid white;
-  height: 25vh;
+  height: 20vh;
   cursor: pointer;
   z-index: 2;
 }
@@ -137,7 +137,7 @@ canvas {
   position: absolute;
   right: 10%;
   line-height: 1;
-  font-size: 15pt;
+  font-size: 13pt;
   font-family: Helvetica, sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -177,7 +177,7 @@ canvas {
 }
 
 .proj_img_thumb {
-  height: 6vh;
+  height: 3.5vh;
   width: auto;
   position: absolute;
   bottom: 15%;
