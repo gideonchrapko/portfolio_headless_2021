@@ -25,10 +25,10 @@ export default function Model({ ...props }) {
   useEffect(() => {
     const size = document.documentElement.clientWidth / 150
     if (size <= 6 ) {
-      return setMaxSize(0.6)
+      return setMaxSize(1.2)
     } 
     if (size >= 6 ) {
-      return setMaxSize(1.2)
+      return setMaxSize(1.6)
     }
 },[])
 

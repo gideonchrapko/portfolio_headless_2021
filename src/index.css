@@ -16,7 +16,7 @@ body {
 canvas {
   outline: none;
   z-index: 0;
-  height: 50vh
+  /* height: 100vh */
 }
 
 .container-section {
@@ -32,7 +32,7 @@ canvas {
 }
 
 .conatiner-cv {
-  padding-top: 20vh;
+  padding-top: 15vh;
 }
 
 .nameTitle {
@@ -52,7 +52,7 @@ canvas {
 .first span{ 
   display: inline-block;
   position: relative;
-  font-size: clamp(25pt, 8.5vw, 120pt);
+  font-size: clamp(35pt, 8.5vw, 120pt);
   font-family: Helvetica, sans-serif;
   font-weight: 600;
   font-style: normal;
@@ -64,7 +64,7 @@ canvas {
 .last span{ 
   display: inline-block;
   position: relative;
-  font-size: clamp(25pt, 8.5vw, 120pt);
+  font-size: clamp(35pt, 8.5vw, 120pt);
   font-family: Helvetica, sans-serif;
   font-weight: 600;
   font-style: normal;
@@ -75,11 +75,13 @@ canvas {
 
 .model {
   position: relative;
-  margin-top: 5vh;
+  /* margin-top: 5vh; */
+  padding-top: 20vh;
+  /* background-color: yellow; */
 }
 
 .subheadTitle {
-  font-size: clamp(7.5pt, 1.4vw, 35pt);
+  font-size: clamp(7.5pt, 1.4vw, 40pt);
   font-family: Helvetica, sans-serif;
   font-weight: 600;
   font-style: normal;
@@ -96,7 +98,7 @@ canvas {
 }
 
 .bodyDescrip {
-  font-size: 8pt;  
+  font-size: clamp(6pt, 2vw, 8pt);  
   font-family: Helvetica, sans-serif;
   font-weight: 100;
   font-style: normal;
@@ -165,7 +167,7 @@ canvas {
   width: 40vw; 
   right: 10%;
   position: absolute;
-  height: 75vh;
+  height: 70vh;
   top: 0;
 }
 
@@ -206,6 +208,7 @@ canvas {
 
 .cv_title {
   font-size: 8pt;  
+
   font-family: Helvetica, sans-serif;
   font-weight: 100;
   font-style: normal;
@@ -215,6 +218,7 @@ canvas {
 .cv-contact {
   padding-top: 2%;
   font-size: 20pt;  
+  font-size: clamp(12pt, 5vw, 20pt);
   font-family: Helvetica, sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -239,6 +243,7 @@ canvas {
 .work-exp-head {
   padding-top: 3%;
   font-size: 15pt;  
+  font-size: clamp(10pt, 3vw, 15pt);
   font-family: Helvetica, sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -247,6 +252,7 @@ canvas {
 
 .work-exp-sub {
   font-size: 12pt;  
+  font-size: clamp(9pt, 3vw, 12pt);
   font-family: Helvetica, sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -254,7 +260,7 @@ canvas {
 }
 
 .work-exp-body {
-  font-size: 9pt;  
+  font-size: clamp(7pt, 2vw, 9pt);
   font-family: Helvetica, sans-serif;
   font-weight: 100;
   font-style: normal;

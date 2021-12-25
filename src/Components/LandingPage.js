@@ -65,6 +65,7 @@ const LandingPage = () => {
     const [postData, setPostData] = useState(null)
     const [imgSrc, setImgSrc] = useState(null)
     const history = useHistory();
+    const [maxSize, setMaxSize] = useState()
 
     useEffect(() => {
         sanityClient.fetch(`*[_type == "project"]{
@@ -118,7 +119,7 @@ const LandingPage = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
             >      
-                <Row>
+                {/* <Row>
                     <Col 
                         lg={{ span: 1, offset: 1}}
                         md={{ span: 1, offset: 1}}
@@ -131,11 +132,11 @@ const LandingPage = () => {
                             alt="Avatar"
                         />
                     </Col>
-                </Row>
-                <Row>
+                </Row> */}
+                <Row style={{ paddingTop: "30vh" }}>
                     <Col
                         lg={{ offset: 1, span: 5 }}
-                        xs={{ offset: 1, span: 5 }}
+                        xs={{ offset: 1, span: 10 }}
                     >
                     <motion.div className='model'>
                         <motion.span className='first' variants={firstName}>
@@ -163,17 +164,17 @@ const LandingPage = () => {
                             xs={12}
                             style={{ height: "100vh", right: "0", position: "absolute", marginTop: "-40vh" }}
                         >
-                        <Canvas shadows>
+                        <Canvas shadows style={{ height: "70vh" }}>
                             <Suspense fallback={<Html center>...Loading</Html>}>
                                 <pointLight position={[0, 1, 0]} intensity={1} color={'white'} />                                
                                 <ambientLight intensity={3} />
-                                <Model position={[0, 1.3, 0]} />
+                                <Model />
                                 <Controls />
                             </Suspense>
 			            </Canvas>
                         </Col>
                     </Row>
-                    <Row style={{ marginTop: "-10px"}}>
+                    <Row>
                         <Col
                             lg={{ offset: 1, span: 4 }}
                             xs={{ offset: 1, span: 6 }}
@@ -233,7 +234,7 @@ const LandingPage = () => {
                                     <h1 className="proj_view_text">View Project</h1>
                                         : 
                                      <BlockContent 
-                                        blocks={project.projectOverview} 
+                                        blocks={project.projectOverview}
                                         projectId="kjeh3i1n"
                                         dataset="production"
                                     />
@@ -278,7 +279,6 @@ const LandingPage = () => {
                     </div>
                 </div>
                 <div className="container-section conatiner-cv child">
-                {/* <div className="container-section conatiner-cv child" style={{ marginTop: "-20vh" }} > */}
                     <Row className="gx-3">
                         <Col lg={{ span: 5, offset: 1 }}>
                             <h6 className="cv_title">CONTACT</h6>
@@ -286,13 +286,13 @@ const LandingPage = () => {
                                 <h1 className="cv-contact">gideonchrapko@gmail.com</h1>
                              </div>
                         </Col>
-                        <Col lg={1}>
+                        <Col lg={1} xs={3}>
                                 <h6 className="cv_title">YEARS ACTIVE</h6>
                                 <div className="modular-cont">
                                     <h1 className="cv-ya">4</h1>
                                 </div>
                         </Col>
-                        <Col lg={4}>
+                        <Col lg={4} xs={9}>
                                 <h6 className="cv_title">RECOGNITIONS</h6>
                                 <div className="modular-cont">
                                     <h1 className="work-exp-head">SANDHU PUBLISHING</h1>
@@ -301,7 +301,7 @@ const LandingPage = () => {
                                 </div>
                         </Col>
                     </Row>
-                    <Row className="gx-3">
+                    <Row className="gx-3" style={{ paddingTop: "3vh" }}>
                         <Col lg={{ span: 6, offset: 1 }}>
                                 <h6 className="cv_title">WORK EXPERIENCE</h6>
                                 <div className="modular-cont">
