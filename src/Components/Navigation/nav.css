@@ -4,13 +4,13 @@
 }
 
 .blend {
-    mix-blend-mode: multiply;
+    mix-blend-mode: none;
 }
 
 .nav-text {
     display:inline-block;
     padding: 20px 0px 20px 0px;
-    font-size: clamp(15pt, 3vw, 20pt);
+    font-size: clamp(10pt, 3vw, 20pt);
     font-family: Helvetica, sans-serif;
     font-weight: 600;
     font-style: normal;
@@ -20,15 +20,7 @@
 }
 
 .nav-text:hover {
-    display:inline-block;
-    padding: 20px 0px 20px 0px;
-    font-size: clamp(15pt, 3vw, 20pt);
-    font-family: Helvetica, sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
+    color: black
 }
 
 .text-nav-head {
@@ -45,6 +37,8 @@
 }
 
 .nav-arrow {
-    height: 5vh;
+    height: 3vw;
+    min-height: 30px;
     width: auto;
+    transition: transform 0.5s;
 }

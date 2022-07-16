@@ -1,5 +1,6 @@
-import React from 'react'
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+import React from 'react';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+// import { Container } from 'react-bootstrap'
 import { AnimatePresence } from "framer-motion";
 
 import LandingPage from './LandingPage'
@@ -8,6 +9,7 @@ import NotFound from './NotFound'
 
 function App() {
   return (
+    <>
       <Router>
         <Route
           render={({ location }) => (
@@ -20,7 +22,8 @@ function App() {
           </AnimatePresence>
             )}
         />
-    </Router>
+      </Router>
+    </>
     )
   }
 

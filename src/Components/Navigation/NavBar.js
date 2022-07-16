@@ -9,6 +9,8 @@ import './nav.css';
 const NavBar = ({slugRoute, postData}) => {
     const [route, setRoute] = useState()
     const [menuVisible, setMenuVisible] = useState(false);
+    const [hoverRight, setHoverRight] = useState(false)
+    const [hoverLeft, setHoverLeft] = useState(false)
     const history = useHistory();
     const path = history.location.pathname
     const newString = path.replace('/', '');
@@ -107,10 +109,16 @@ const NavBar = ({slugRoute, postData}) => {
                                     <img 
                                         src={Arrow} 
                                         className="nav-arrow" 
-                                        style={{ transform: "rotate(225deg)" }}
-                                        onPointerOver={() => handleHoverLeft()}
-                                        onPointerOut={() => handleOutLeft()}
-                                        onClick={() => history.push(`/project/${postData[titleIndex].slugRoute.current}`) }
+                                        style={{ transform: `rotate(225deg) scale(${hoverLeft ? 1.1 : 1})` }}
+                                        onPointerOver={e => {
+                                            handleHoverLeft()
+                                            setHoverLeft(true)
+                                        }}
+                                        onPointerOut={e => {
+                                            handleOutLeft()
+                                            setHoverLeft(false)
+                                        }}
+                                        onClick={() => history.push(`/project/${postData[1].slugRoute.current}`) }
                                     />
                                 </a>
                             </Col> 
@@ -132,9 +140,15 @@ const NavBar = ({slugRoute, postData}) => {
                                     <img   
                                         src={Arrow} 
                                         className="nav-arrow" 
-                                        style={{ transform: "rotate(45deg)" }}
-                                        onPointerOver={() => handleHoverRight()}
-                                        onPointerOut={() => handleOutRight()}
+                                        style={{ transform: `rotate(45deg) scale(${hoverRight ? 1.1 : 1})` }}
+                                        onPointerOver={e => {
+                                            handleHoverRight()
+                                            setHoverRight(true)
+                                        }}
+                                        onPointerOut={e => {
+                                            handleOutRight()
+                                            setHoverRight(false)
+                                        }}
                                         onClick={() => history.push(`/project/${postData[titleIndex].slugRoute.current}`) }
                                     />
                                 </a>

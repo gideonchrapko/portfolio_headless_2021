@@ -122,9 +122,8 @@ canvas {
   left: 10%;
   position: relative;
   background-color: #BAFF00; 
-  border-radius: 30px; 
+  border-radius: 50px; 
   border: 3px solid white;
-  height: 20vh;
   cursor: pointer;
   z-index: 2;
 }
@@ -140,6 +139,7 @@ canvas {
   right: 10%;
   line-height: 1;
   font-size: 13pt;
+  font-size: clamp(9pt, 3vw, 18pt);
   font-family: Helvetica, sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -147,18 +147,26 @@ canvas {
   text-decoration: none;
 }
 
+.proj-overview-text {
+  font-size: clamp(8pt, 3vw, 10pt);
+  font-family: Helvetica, sans-serif;
+  color: black;
+  font-weight: 100;
+}
+
 .proj_mainImage {
   height: 90%; 
   margin-top: 1.7%;
-  border-radius: 20px; 
+  border-radius: 38px; 
   background-size: cover; 
   background-position: center;
 }
 
 .roj_row_img_anim {
   background-size: cover; 
+  background-position: center;
   height: 100%;
-  border-radius: 30px; 
+  border-radius: 50px; 
   border: 3px solid white;
   cursor: pointer;
 }
@@ -167,7 +175,7 @@ canvas {
   width: 40vw; 
   right: 10%;
   position: absolute;
-  height: 70vh;
+  height: 85vh;
   top: 0;
 }
 
@@ -286,30 +294,31 @@ canvas {
   position: relative; */
 }
 
-.sing_proj_experience {
+.sing_proj_img {
   border-radius: 20px;
   border: solid 3px black;
-  margin: 10px;
-  width: 80%;
-  left: 10%;
+  /* height: 55vh; */
   position: relative;
+  cursor: pointer;
+  /* left: 10%; */
 }
 
-/* .sing_proj_persona {
-  border-radius: 20px;
-  border: solid 3px black;
-} */
+.sing_proj_img:hover {
+  mix-blend-mode: multiply;
+  filter: opacity(50%);
+  border: solid 3px #FF00A7;
+}
 
 .sing_proj_headerimg {
-  border-radius: 20px;
+  border-radius: 40px;
   background-size: cover;
-  height: 50vh;
+  height: 40vh;
   width: 100%;
   background-position: center;
 }
 
 .sing_proj_headerTitle {
-  font-size: 40pt;  
+  font-size: clamp(20pt, 4vw, 40pt);  
   font-family: Helvetica, sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -331,6 +340,7 @@ canvas {
 .sing-proj-modular-cont {
   border-top: 1px solid black;
   top: 10vh;
+  font-size: clamp(8pt, 3.5vw, 12pt);
 }
 
 .sing-proj-thumb {
@@ -338,6 +348,116 @@ canvas {
     width: auto;
     position: relative;
     bottom: 0;
-    left: 2%;
+    left: 30px;
     filter: invert(100%) sepia(2%) saturate(6%) hue-rotate(327deg) brightness(104%) contrast(101%)
 }
+
+/* .privew-modal-background {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 1);
+  position: fixed;
+  z-index: 10;
+  margin-left: -12px;
+} */
+
+.modal-image {
+  height: 80vh;
+  border-radius: 20px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10vh;
+  max-width: 1200px;
+}
+
+.tldr-div {
+  width: 100%;
+  float: right; 
+  /* margin-right: -50px;  */
+  height: 250px; 
+  border-radius: 40px 0px 0px 40px; 
+  cursor: pointer;
+  transition: transform 0.5s;
+  position: relative;
+}
+
+.sing-prod-index {
+  font-size: clamp(5pt, 1vw, 8pt);
+  cursor: pointer; 
+}
+
+.backgroundDiv {
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  position: fixed;
+  z-index: -1;
+  cursor: pointer
+}
+
+.modal-div {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000000;
+  right: 0px;
+}
+
+.dot {
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.close-modal {
+  height: 50px; 
+  margin-top: 35px; 
+  margin-left: 50px;
+  cursor: pointer; 
+  position: fixed;
+  transition: transform 0.2s;
+}
+
+.modal-arrow-left {
+ height: 100px;
+ position: fixed;
+ top: 43vh;
+ left: 50px;
+ cursor: pointer;
+ transition: transform 0.2s;
+}
+
+.modal-arrow-left:hover {
+  transform: scale(1.1);
+}
+
+.modal-arrow-right:hover {
+  transform: scale(1.1) rotate(180deg);
+}
+
+.modal-arrow-right {
+  height: 100px;
+  position: fixed;
+  top: 43vh;
+  right: 50px;
+  transform: rotate(180deg);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  transform: scale(1.1);
+}
+
+.modal-page-text {
+  font-size: 15pt;
+  font-weight: 800;
+  position: fixed;
+  color: white;
+  text-align: center;
+  width: 100vw;
+}
+

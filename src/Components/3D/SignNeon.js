@@ -16,7 +16,7 @@ export default function Model({ ...props }) {
   const rotation = [0, 6, 0]
   const scale = [-10, -10, -10]
 
-  useFrame(() => (ref.current.rotation.y -= 0.004))
+  useFrame(() => (ref.current.rotation.y += 0.004))
 
   const animatedProps = useSpring({
     hovered: expand ? [size + 0.2, size + 0.2, size + 0.2] : [size, size, size]
@@ -44,7 +44,7 @@ useEffect(() => {
     config: { 
       mass: 10, 
       friction: 60, 
-      tension: 300
+      tension: 100
     },
   }))
 

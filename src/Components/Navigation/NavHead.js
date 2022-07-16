@@ -3,8 +3,8 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 const NavHead = () => {
     return (
-        <div>
-        <Container fluid className="fixed-top"> 
+        <div style={{ position: "fixed", zIndex: "8" }}>
+        <Container fluid className="fixed-top" style={{ backgroundColor: "white" }}> 
             <Row style={{ width: "100vw", paddingTop: "20px" }}>
                 <Col
                     lg={5}

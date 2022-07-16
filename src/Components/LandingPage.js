@@ -13,7 +13,7 @@ import NavHead from './Navigation/NavHead';
 import NavBar from './Navigation/NavBar';
 
 import ArrowWhite from '../Assets/proj_arrows_white.svg';
-import Avatar from '../Assets/1618532615911.jpg';
+// import Avatar from '../Assets/1618532615911.jpg';
 import '../index.css';
 
 const transition = { duration: 0.5, ease: [0.6, 0.01, -0.05, 0.9] };
@@ -61,11 +61,11 @@ const firstName = {
   };
 
 const LandingPage = () => {
-    const [iHovered, setiHovered] = useState(false)
-    const [postData, setPostData] = useState(null)
-    const [imgSrc, setImgSrc] = useState(null)
+    const [iHovered, setiHovered] = useState(false);
+    const [postData, setPostData] = useState(null);
+    const [imgSrc, setImgSrc] = useState(null);
     const history = useHistory();
-    const [maxSize, setMaxSize] = useState()
+    // const [maxSize, setMaxSize] = useState()
 
     useEffect(() => {
         sanityClient.fetch(`*[_type == "project"]{
@@ -86,11 +86,15 @@ const LandingPage = () => {
             slugRoute,
             projectTitle,
             projectOverview,
+            projectOverviewShort,
             role,
         }`)
         .then((data) => setPostData(data))
         .catch(console.error)
-      },[postData])
+      },[])
+
+      const length = postData && postData.length
+      const projHeight = 100 / length
 
       const variants = {
         open: { width: "40%" },
@@ -119,20 +123,6 @@ const LandingPage = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
             >      
-                {/* <Row>
-                    <Col 
-                        lg={{ span: 1, offset: 1}}
-                        md={{ span: 1, offset: 1}}
-                        sm={{ span: 4, offset: 1}}
-                        xs={{ span: 3, offset: 1}}
-                    >
-                        <img 
-                            src={Avatar}
-                            className="avatar-img"
-                            alt="Avatar"
-                        />
-                    </Col>
-                </Row> */}
                 <Row style={{ paddingTop: "30vh" }}>
                     <Col
                         lg={{ offset: 1, span: 5 }}
@@ -207,46 +197,52 @@ const LandingPage = () => {
                         </Col>
                     </Row>
                 </motion.div>
-                <div className="container-section child" style={{ paddingTop: "10vh" }}>
-                    <div onMouseLeave={() => setiHovered(false)}>
+
+                <div className="container-section child" style={{ paddingTop: "15vh" }}>
+                    <div onMouseLeave={() => setiHovered(false)} style={{ height: "70vh" }}>
                         {postData &&
                         postData.map((project, index) => (
-                            <motion.div className="gx-3 proj_row row" 
+                            <motion.div 
+                                className="gx-3 proj_row row" 
                                 onMouseEnter={e => {
                                     setiHovered(index)
-                                    setImgSrc(project.mainImage.asset.url)
+                                    setImgSrc(project.mainImage && project.mainImage.asset.url)
                                 }}
                                 animate={iHovered !== false ? "open" : "closed"}
                                 variants={variants}
                                 transition={spring}
-                                style={{backgroundColor: iHovered === index ? "#0AFF00" : "#BAFF00" }}
+                                style={{
+                                    backgroundColor: iHovered === index ? "#0AFF00" : "#BAFF00",
+                                    height: `${projHeight}%`
+                                }}
                                 key={index}
-                                onClick={() => history.push(`project/${project.slugRoute.current}`)}
+                                onClick={() => history.push(`project/${project.slugRoute && project.slugRoute.current}`)}
                             >
                                 <Col lg={1} className="proj_col" >
-                                    <img src={project.thumbImage.asset.url} alt={project.slugRoute.current} className="proj_img_thumb"/>
+                                    <img src={project.thumbImage && project.thumbImage.asset.url} alt={project.slugRoute && project.slugRoute.current} className="proj_img_thumb d-xs-none d-none d-lg-block d-md-block"/>
                                 </Col>
-                                <Col lg={2} className="proj_col" >
-                                    <h1 key={index} to={"/project/" + project.slugRoute.current} className="proj_header">{project.projectTitle}</h1>
+                                <Col lg={2} xs={4} className="proj_col" >
+                                    <h1 key={index} to={"/project/" + project.slugRoute.current} className="proj_header">{project.projectTitle && project.projectTitle}</h1>
                                 </Col>
-                                <Col lg={iHovered !== false ? 6 : 4} className="proj_description">
+                                <Col lg={iHovered !== false ? 6 : 4} className="proj_description d-xs-none d-none d-lg-block d-md-block">
                                     {index === iHovered ? 
                                     <h1 className="proj_view_text">View Project</h1>
                                         : 
-                                     <BlockContent 
-                                        blocks={project.projectOverview}
-                                        projectId="kjeh3i1n"
-                                        dataset="production"
-                                    />
+                                    <h6 className='proj-overview-text'>
+                                        <BlockContent 
+                                            blocks={project.projectOverviewShort}
+                                            projectId="kjeh3i1n"
+                                            dataset="production"
+                                        />
+                                    </h6>
                                     }
                                 </Col>
-                                <Col lg={iHovered !== false ? 3 : 5} className="proj_col">
+                                <Col lg={iHovered !== false ? 3 : 5} xs={8} className="proj_col">
                                     {iHovered !== false ?
                                         <div> 
                                         </div> :
                                         <div style={{ backgroundImage: `url(${project.mainImage.asset.url})` }} 
                                             alt={`"${project.slugRoute.current} image"`} className="proj_mainImage" 
-                                            onMouseEnter={() => console.log(postData.index)}
                                         >
                                         </div>                                   
                                     }
@@ -267,7 +263,7 @@ const LandingPage = () => {
                             variants={variantsRight}
                             animate={iHovered !== false ? "first" : "second"}
                             transition={spring}
-                            style={{ paddingTop: "10vh" }}
+                            style={{ paddingTop: "15vh" }}
                         >
                             <div 
                                 style={{ backgroundImage: `url(${imgSrc})` }}
@@ -278,6 +274,7 @@ const LandingPage = () => {
                         </motion.div>
                     </div>
                 </div>
+
                 <div className="container-section conatiner-cv child">
                     <Row className="gx-3">
                         <Col lg={{ span: 5, offset: 1 }}>
