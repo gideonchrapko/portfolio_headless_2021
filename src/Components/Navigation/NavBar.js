@@ -87,15 +87,15 @@ const NavBar = ({slugRoute, postData}) => {
             <Container >
                 <Row className="nav-container" >   
                     <Col lg={4} xs={4} style={{ textAlign: "center"}}>
-                        <a className="nav-text" href="#" onClick={() => history.push('/')}>{route === "home" ? "About" : "Home"}</a>
+                        <h5 className="nav-text" onClick={() => history.push('/')}>{route === "home" ? "About" : "Home"}</h5>
                     </Col>
                     {route === "home" ?
                         <>
                             <Col lg={4} xs={4} style={{ textAlign: "center"}}>
-                                <a className="nav-text" href="#" >Projects</a>
+                                <h5 className="nav-text" >Projects</h5>
                             </Col>
                             <Col lg={4} xs={4} style={{ textAlign: "center"}}>
-                                <a className="nav-text" href="#">CV</a>
+                                <h5 className="nav-text" >CV</h5>
                             </Col> 
                          </>
                          :
@@ -105,8 +105,8 @@ const NavBar = ({slugRoute, postData}) => {
                                 xs={2} 
                                 style={{ textAlign: "center" }} 
                             >
-                                <a className="nav-text" href="#">
-                                    <img 
+                                <h5 className="nav-text">
+                                    <img alt="Click for next project"
                                         src={Arrow} 
                                         className="nav-arrow" 
                                         style={{ transform: `rotate(225deg) scale(${hoverLeft ? 1.1 : 1})` }}
@@ -120,24 +120,24 @@ const NavBar = ({slugRoute, postData}) => {
                                         }}
                                         onClick={() => history.push(`/project/${postData[1].slugRoute.current}`) }
                                     />
-                                </a>
+                                </h5>
                             </Col> 
                             <Col lg={4} xs={4} style={{ textAlign: "center"}}>
-                                <a className="nav-text" href="#">
+                                <h5 className="nav-text">
                                     {titleIndex !== null ?
                                         postData[titleIndex && titleIndex].projectTitle
                                         :
                                         "...Loading"
                                     }
-                                </a>
+                                </h5>
                             </Col>
                             <Col 
                                 lg={2} 
                                 xs={2} 
                                 style={{ textAlign: "center" }}
                             >
-                                <a className="nav-text" href="#">
-                                    <img   
+                                <h5 className="nav-text">
+                                    <img alt="Click for previous project"
                                         src={Arrow} 
                                         className="nav-arrow" 
                                         style={{ transform: `rotate(45deg) scale(${hoverRight ? 1.1 : 1})` }}
@@ -151,7 +151,7 @@ const NavBar = ({slugRoute, postData}) => {
                                         }}
                                         onClick={() => history.push(`/project/${postData[titleIndex].slugRoute.current}`) }
                                     />
-                                </a>
+                                </h5>
                             </Col> 
                         </>
                     }

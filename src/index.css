@@ -352,15 +352,6 @@ canvas {
     filter: invert(100%) sepia(2%) saturate(6%) hue-rotate(327deg) brightness(104%) contrast(101%)
 }
 
-/* .privew-modal-background {
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 1);
-  position: fixed;
-  z-index: 10;
-  margin-left: -12px;
-} */
-
 .modal-image {
   height: 80vh;
   border-radius: 20px;
@@ -371,14 +362,21 @@ canvas {
 }
 
 .tldr-div {
-  width: 100%;
-  float: right; 
-  /* margin-right: -50px;  */
+  width: 100px;
+  float: right;
   height: 250px; 
   border-radius: 40px 0px 0px 40px; 
   cursor: pointer;
   transition: transform 0.5s;
   position: relative;
+}
+
+.tldr-font {
+  font-weight: 800;
+  height: 80px;
+  text-align: center;
+  margin-top: 80px;
+  font-size: 30pt;
 }
 
 .sing-prod-index {
@@ -422,7 +420,7 @@ canvas {
 }
 
 .modal-arrow-left {
- height: 100px;
+ height: 80px;
  position: fixed;
  top: 43vh;
  left: 50px;
@@ -439,7 +437,7 @@ canvas {
 }
 
 .modal-arrow-right {
-  height: 100px;
+  height: 80px;
   position: fixed;
   top: 43vh;
   right: 50px;

@@ -62,6 +62,43 @@ export default {
             type: "array",
             of: [{type: "string"}]
         },
+
+        {
+          name: 'sectionContent',
+          title: 'Section Content',
+          type: 'array',
+          of: [
+            {
+              title: 'object',
+              name: 'Object',
+              type: 'object',
+              fields: [
+                {
+                  title: 'Section Block',
+                  name: 'sectionBlock',
+                  type: 'blockContent'
+                },
+                {
+                  name: 'sectionImages',
+                  type: 'array',
+                  title: 'Section Images',
+                  of: [
+                    {
+                      name: 'image',
+                      type: 'image',
+                      title: 'Image',
+                      options: {
+                        hotspot: true,
+                      },
+                    },
+                  ],
+                },
+              ]
+            }
+          ]
+        },
+
+
         {
           name: "section1",
           title: "section 1",
