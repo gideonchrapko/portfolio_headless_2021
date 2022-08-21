@@ -31,7 +31,6 @@ const NavBar = ({slugRoute, postData}) => {
     useEffect(() => {
         setMenuVisible(!menuVisible)
         window.scrollTo(0,0)
-        console.log(titleIndex, "titleIndex")
       },[])
 
       useEffect(() => {

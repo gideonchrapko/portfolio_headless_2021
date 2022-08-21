@@ -64,6 +64,7 @@ const LandingPage = () => {
     const [iHovered, setiHovered] = useState(false);
     const [postData, setPostData] = useState(null);
     const [imgSrc, setImgSrc] = useState(null);
+    const [landingPageData, setLandingPageData] = useState()
     const history = useHistory();
     // const [maxSize, setMaxSize] = useState()
 
@@ -93,6 +94,15 @@ const LandingPage = () => {
         .catch(console.error)
       },[])
 
+      useEffect(() => {
+        sanityClient.fetch(`*[_type == "landingPage"]{
+            BioParagraph1,
+            BioParagraph2
+        }`)
+        .then((data) => setLandingPageData(data))
+        .catch(console.error)
+      },[])
+
       const length = postData && postData.length
       const projHeight = 100 / length
 
@@ -106,6 +116,7 @@ const LandingPage = () => {
         second: { width: "0" }
       }
 
+      const year = new Date().getFullYear();
       const spring = { duration: 1, ease: [0.4, 0.13, 0.23, 0.96]}
 
     return (
@@ -179,7 +190,7 @@ const LandingPage = () => {
                             sm={{ offset: 1, span: 1 }}
                             xs={{ offset: 1, span: 1 }}
                         >
-                            <h1 className="subheadDate">2021</h1>
+                            <h1 className="subheadDate">{year}</h1>
                         </Col>
                         <Col
                             lg={{ offset: 0, span: 2 }}
@@ -187,13 +198,25 @@ const LandingPage = () => {
                             sm={{ offset: 0, span: 2 }}
                             xs={{ offset: 0, span: 3 }}
                         >
-                            <h6 className="bodyDescrip">I am currently a third year student enrolled in the Alberta University of the Arts in the Bachelor of Design program.</h6>
+                            <h6 className="bodyDescrip">
+                                <BlockContent 
+                                    blocks={landingPageData && landingPageData[0].BioParagraph1}
+                                    projectId="kjeh3i1n"
+                                    dataset="production"
+                                />
+                            </h6>
                         </Col>
                         <Col
                             lg={{ offset: 0, span: 2 }}
                             xs={{ offset: 0, span: 3 }}
                         >
-                            <h6 className="bodyDescrip">I currently am working in UI/UX design and development working with several front end technologies and utilizing javascript frameworks such as Reactjs, Threejs and bootstrap.</h6>
+                            <h6 className="bodyDescrip">
+                                <BlockContent 
+                                    blocks={landingPageData && landingPageData[0].BioParagraph2}
+                                    projectId="kjeh3i1n"
+                                    dataset="production"
+                                />                           
+                             </h6>
                         </Col>
                     </Row>
                 </motion.div>
@@ -294,7 +317,7 @@ const LandingPage = () => {
                                 <div className="modular-cont">
                                     <h1 className="work-exp-head">SANDHU PUBLISHING</h1>
                                     <h3 className="work-exp-sub">2022, CALGARY</h3>
-                                    <h6 className="work-exp-body">Works featured in My Graphic DNA as well as Geo Graphics.</h6>
+                                    <h6 className="work-exp-body">Works featured in "My Graphic DNA" as well as "Geo Graphics".</h6>
                                 </div>
                         </Col>
                     </Row>

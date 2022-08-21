@@ -3,13 +3,14 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 import blockContent from './blockContent'
 import project from './project'
+import landingPage from './LandingPage'
 
 export default createSchema({
   name: 'default',
 
   types: schemaTypes.concat([
-
     project,
     blockContent,
+    landingPage
   ]),
 })

@@ -312,9 +312,37 @@ canvas {
 .sing_proj_headerimg {
   border-radius: 40px;
   background-size: cover;
-  height: 40vh;
-  width: 100%;
+  float: right;
   background-position: center;
+  transition: width ease-in-out 0.5s, height ease-in-out 0.5s;
+}
+
+.tldr-project-title {
+  transition: width ease-in-out 0.5s;
+  text-align: right;
+  font-weight: 700;
+  font-size: 30pt;
+  padding-right: 20px;
+  line-height: 0.9;
+  width: 60%;
+  float: right;
+}
+
+.tldr-image {
+  height: 400%;
+  border-radius: 40px;
+  width: 100%;
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.sing-proj-modular-tldr {
+  font-size: 8pt;
+  float: left;
+  padding-right: 20px;
+  list-style: none;
 }
 
 .sing_proj_headerTitle {

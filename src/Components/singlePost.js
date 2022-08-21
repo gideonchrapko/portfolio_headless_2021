@@ -20,10 +20,11 @@ const SinglePost = () => {
   const [previewModal, setPreviewModal] = useState(false);
   const [modalImage, setModalImage] = useState(1);
   const [modalIndex, setModalIndex] = useState(1);
+  const [indexLength, setIndexLength] = useState();
   const [indexHov, setIndexHov] = useState();
   const [hover, setHover] = useState(false);
   const [section, setSection] = useState(0)
-  const indexLength = singlePost && singlePost[0].sectionContent[modalImage].sectionImages.length - 1
+  // const indexLength = singlePost && singlePost[0].sectionContent[modalImage].sectionImages.length - 1
   const builder = imageUrlBuilder(sanityClient)
 
   function urlFor(source) {
@@ -40,6 +41,13 @@ const SinglePost = () => {
         alt
       },
       thumbImage{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      tldrClip{
         asset->{
           _id,
           url
@@ -99,8 +107,6 @@ const SinglePost = () => {
     }
   }
 
-  console.log(modalImage)
-
   return (
       <Container>
         <NavHead />
@@ -132,29 +138,24 @@ const SinglePost = () => {
           :
           <span></span>
         }
-        <div className="container-section-project">
+        <div className="container-section-project" style={{ marginBottom: "20vh" }}>
         {singlePost &&
           singlePost.map((project, index) => (
               <span key={index}>
-                <Row onClick={() => console.log(project.sectionContent[0].sectionBlock)}>
+                <Row>
                   <Col lg={{ span: 1 }} style={{ position: "fixed", left: "0", width: '12%' }} className='d-xs-none d-md-none d-none d-lg-block'>
-                    {project &&
+                    {project && !tldr &&
                       project.sectionTitle.map((index, i) => {
                         const indexShorthand = index.length > 10 ? index.substr(0, 20-1) + '...' : index;
                         return (
                           <div key={i}>
-                            <span
-                              style={{ backgroundColor: `${section === i ? 'red' : indexHov === i ? "red" : "white" }` }}
+                            <span style={{ backgroundColor: `${section === i ? 'red' : indexHov === i ? "red" : "white" }` }}
                               className="dot">
                             </span>
-                            <span
-                              style={{ 
-                                fontWeight: `${section === i ? 500 : indexHov === i ? "500" : "300" }`,
+                            <span style={{ fontWeight: `${section === i ? 500 : indexHov === i ? "500" : "300" }`,
                                 color: `${section === i ? 'black' : indexHov === i ? "black" : "rgba(167, 167, 167, 0.9)"}`
                                }}
-                              onClick={() => setSection(i)}
-                              onPointerOver={() => setIndexHov(i)}
-                              onPointerOut={() => setIndexHov()}
+                              onClick={() => setSection(i)} onPointerOver={() => setIndexHov(i)} onPointerOut={() => setIndexHov()}
                               className='sing-prod-index'
                             >
                                 {indexShorthand}
@@ -165,16 +166,30 @@ const SinglePost = () => {
                     }
                   </Col>
                   <Col lg={{ span: 10, offset: 1 }}>
-                    <div
-                      style={{ backgroundImage: `url(${project.mainImage.asset.url})` }}
-                      alt={project.projectTitle} 
-                      className="sing_proj_headerimg"
-                    >
-                      <h1 className="sing_proj_headerTitle">{project.projectTitle}</h1>
-                      <img src={project.thumbImage.asset.url} alt={`${project.projectTitle} logo`} className="sing-proj-thumb" />
+                    <div style={{ height: "100%", width: `${tldr ? "50%" : "0%" }`, float: "left", transition: "width ease-in-out 0.5s" }} >
+                      <h1 className='tldr-project-title' >{tldr ? project.projectTitle : ""}</h1>
+                      <div className="sing-proj-modular-tldr" style={{ width: "100%", textAlign: "right" }}>
+                        <h6><a href="https://wccdrops.com/" style={{ color: "black" }}>{tldr ? "View Site" : ""}</a></h6>
+                      </div>
                     </div>
+                    <div style={{ backgroundImage: `url(${project.mainImage.asset.url})`, width: `${tldr ? "50%" : "100%" }`, height: `${tldr ? "15vh" : "40vh" }` }} 
+                      alt={project.projectTitle} className="sing_proj_headerimg" 
+                    >
+                      <h1 className="sing_proj_headerTitle">{!tldr ? project.projectTitle : "" }</h1>
+                      {!tldr ?
+                        <img src={project.thumbImage.asset.url} alt={`${project.projectTitle} logo`} className="sing-proj-thumb" />
+                        :
+                        <span></span>
+                       }
+                    </div>
+                    {tldr ?
+                      <div style={{ backgroundImage: `url(${project.tldrClip.asset.url})` }} className='tldr-image'>
+                      </div>
+                      :
+                      <span></span>                    
+                    }
                   </Col>
-                  <Col lg={{ span: 1 }} style={{ position: "fixed", right: "0" }}>
+                  <Col lg={{ span: 1 }} style={{ position: "fixed", right: "0", zIndex: "9999" }}>
                     <div style={{ background: `${ tldr ? "white" : "#00E4B6" }`, border: `${ tldr ? "5px solid #00E4B6" : "" }`, transform: `translateX(${hover ? "20px" : "30px"})` }}
                       onClick={() => setTldr(!tldr)} onPointerOver={() => setHover(true)} onPointerOut={() => setHover(false)} className='tldr-div'
                     >
@@ -182,42 +197,48 @@ const SinglePost = () => {
                     </div>
                   </Col>
                 </Row>
-                <Row>
-                   <Col lg={{ span: 10, offset: 1}} style={{ marginTop: "0" }}>
-                     <h1 className="sing-proj-head">{project.sectionTitle[0]}</h1>
-                  </Col>
-                </Row>
-                <Row className="gx-3">
-                      <Col lg={{ span: 2, offset: 1 }} xs={6}>
-                          <h6 className="cv_title">ROLE</h6>
-                          <div className="sing-proj-modular-cont" style={{ paddingBottom: "5vw", paddingLeft: "15px" }}>
-                          {project.role &&
-                              project.role.map((index) => (
-                              <li key={index}>{index}</li>
-                            ))}
-                            </div>
-                       </Col>
-                      <Col lg={2} xs={6}>
-                              <h6 className="cv_title">TOOLS</h6>
+                {!tldr ?
+                  <>
+                    <Row>
+                      <Col lg={{ span: 10, offset: 1}} style={{ marginTop: "0" }}>
+                        <h1 className="sing-proj-head">{project.sectionTitle[0]}</h1>
+                      </Col>
+                    </Row>
+                    <Row className="gx-3">
+                          <Col lg={{ span: 2, offset: 1 }} xs={6}>
+                              <h6 className="cv_title">ROLE</h6>
                               <div className="sing-proj-modular-cont" style={{ paddingBottom: "5vw", paddingLeft: "15px" }}>
-                               {project.tools &&
-                                  project.tools.map((index) => (
-                                  <li key={index}>{index}</li>
-                                ))}
-                               </div>
-                       </Col>
-                       <Col lg={6}>
-                         <h6 className="cv_title">PROJECT OVERVIEW</h6>
-                          <div className="sing-proj-modular-cont" style={{ paddingBottom: "5vw" }}>
-                             <BlockContent 
-                                blocks={project.projectOverview} 
-                                projectId="kjeh3i1n"
-                                dataset="production"
-                             />
-                          </div>
-                       </Col>
-                  </Row>
-                  {project &&
+                                {project.role &&
+                                    project.role.map((index) => (
+                                    <li key={index}>{index}</li>
+                                  ))}
+                              </div>
+                          </Col>
+                          <Col lg={2} xs={6}>
+                                  <h6 className="cv_title">TOOLS</h6>
+                                  <div className="sing-proj-modular-cont" style={{ paddingBottom: "5vw", paddingLeft: "15px" }}>
+                                  {project.tools &&
+                                      project.tools.map((index) => (
+                                      <li key={index}>{index}</li>
+                                    ))}
+                                  </div>
+                          </Col>
+                          <Col lg={6}>
+                            <h6 className="cv_title">PROJECT OVERVIEW</h6>
+                              <div className="sing-proj-modular-cont" style={{ paddingBottom: "5vw" }}>
+                                <BlockContent 
+                                    blocks={project.projectOverview} 
+                                    projectId="kjeh3i1n"
+                                    dataset="production"
+                                />
+                              </div>
+                          </Col>
+                      </Row>
+                    </>
+                    :
+                    <spam></spam>
+                  }
+                  {project && !tldr && 
                     project.sectionContent.map((proj, i) => (
                       <span key={i}>
                         <Row>
@@ -244,6 +265,7 @@ const SinglePost = () => {
                                       onClick={e => {
                                         setPreviewModal(true)
                                         setModalImage(i)
+                                        setIndexLength(singlePost[0].sectionContent[i].sectionImages.length - 1)
                                       }}
                                       src={urlFor(proj.sectionImages[0].asset).url()}
                                       className="sing_proj_img"
