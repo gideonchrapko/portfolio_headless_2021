@@ -75,6 +75,9 @@ const NavBar = ({slugRoute, postData}) => {
             }
         }
 
+        console.log(titleIndex, "title index")
+        console.log(postData, "postDataString")
+
     return (
         <motion.div
             initial={{ y: 100 }}
@@ -117,7 +120,7 @@ const NavBar = ({slugRoute, postData}) => {
                                             handleOutLeft()
                                             setHoverLeft(false)
                                         }}
-                                        onClick={() => history.push(`/project/${postData[1].slugRoute.current}`) }
+                                        onClick={() => history.push(`/project/${postData[titleIndex].slugRoute.current}`) }
                                     />
                                 </h5>
                             </Col> 
