@@ -66,7 +66,6 @@ const LandingPage = () => {
     const [imgSrc, setImgSrc] = useState(null);
     const [landingPageData, setLandingPageData] = useState()
     const history = useHistory();
-    // const [maxSize, setMaxSize] = useState()
 
     useEffect(() => {
         sanityClient.fetch(`*[_type == "project"]{
@@ -89,6 +88,13 @@ const LandingPage = () => {
             projectOverview,
             projectOverviewShort,
             role,
+            tldrClip{
+                asset->{
+                  _id,
+                  url
+                },
+                alt
+              },
         }`)
         .then((data) => setPostData(data))
         .catch(console.error)
@@ -107,8 +113,8 @@ const LandingPage = () => {
       const projHeight = 100 / length
 
       const variants = {
-        open: { width: "40%" },
-        closed: { width: "80%" }
+        open: { width: "40vw" },
+        closed: { width: "80vw" }
       }
 
       const variantsRight = {
@@ -222,54 +228,64 @@ const LandingPage = () => {
                 </motion.div>
 
                 <div className="container-section child" style={{ paddingTop: "15vh" }}>
-                    <div onMouseLeave={() => setiHovered(false)} style={{ height: "70vh" }}>
+                    <div 
+                        //this is supposed to be the container for all mapped divs
+                        onMouseLeave={() => setiHovered(false)} 
+                        style={{ height: "70vh", width: "80vw", marginLeft: "10vw", display: "inline-block" }}
+                    >
                         {postData &&
                         postData.map((project, index) => (
                             <motion.div 
                                 className="gx-3 proj_row row" 
                                 onMouseEnter={e => {
                                     setiHovered(index)
-                                    setImgSrc(project.mainImage && project.mainImage.asset.url)
+                                    setImgSrc(project.mainImage && project.tldrClip.asset.url)
                                 }}
                                 animate={iHovered !== false ? "open" : "closed"}
                                 variants={variants}
                                 transition={spring}
                                 style={{
                                     backgroundColor: iHovered === index ? "#0AFF00" : "#BAFF00",
-                                    height: `${projHeight}%`
+                                    height: `${projHeight}%`,
+                                    marginLeft: "0pt",
+                                    width: "100%",
                                 }}
                                 key={index}
                                 onClick={() => history.push(`project/${project.slugRoute && project.slugRoute.current}`)}
                             >
                                 <Col lg={1} className="proj_col" >
-                                    <img src={project.thumbImage && project.thumbImage.asset.url} alt={project.slugRoute && project.slugRoute.current} className="proj_img_thumb d-xs-none d-none d-lg-block d-md-block"/>
+                                    <img 
+                                        src={project.thumbImage && project.thumbImage.asset.url} 
+                                        alt={project.slugRoute && project.slugRoute.current} 
+                                        className="proj_img_thumb d-xs-none d-none d-lg-block d-md-block"
+                                    />
                                 </Col>
                                 <Col lg={2} xs={4} className="proj_col" >
-                                    <h1 key={index} to={"/project/" + project.slugRoute.current} className="proj_header">{project.projectTitle && project.projectTitle}</h1>
+                                    <h1 className="proj_header">{project.projectTitle && project.projectTitle}</h1>
                                 </Col>
                                 <Col lg={iHovered !== false ? 6 : 4} className="proj_description d-xs-none d-none d-lg-block d-md-block">
                                     {index === iHovered ? 
                                     <h1 className="proj_view_text">View Project</h1>
                                         : 
                                     <h6 className='proj-overview-text'>
-                                        <BlockContent 
+                                        {/* <BlockContent 
                                             blocks={project.projectOverviewShort}
                                             projectId="kjeh3i1n"
                                             dataset="production"
-                                        />
+                                        /> */}
                                     </h6>
+                                    // <h1 className="proj_header">{project.projectTitle && project.projectTitle}</h1>
                                     }
                                 </Col>
-                                <Col lg={iHovered !== false ? 3 : 5} xs={8} className="proj_col">
+                                <Col lg={iHovered !== false ? 3 : 5} xs={8} className="proj_col" style={{ height: "100%" }}>
                                     {iHovered !== false ?
-                                        <div> 
-                                        </div> :
-                                        <div style={{ backgroundImage: `url(${project.mainImage.asset.url})` }} 
-                                            alt={`"${project.slugRoute.current} image"`} className="proj_mainImage" 
+                                        null :
+                                        <div style={{ backgroundImage: `url(${project.mainImage.asset.url})` }}
+                                            alt={`"${project.slugRoute.current} image"`} className="proj_mainImage"
                                         >
-                                        </div>                                   
+                                        </div>
                                     }
-                                    <img 
+                                    <img
                                         src={ArrowWhite}   
                                         alt="arrow" 
                                         className="proj_arrow" 
@@ -286,7 +302,7 @@ const LandingPage = () => {
                             variants={variantsRight}
                             animate={iHovered !== false ? "first" : "second"}
                             transition={spring}
-                            style={{ paddingTop: "15vh" }}
+                            style={{ float: "right", top: "-100%" }}
                         >
                             <div 
                                 style={{ backgroundImage: `url(${imgSrc})` }}

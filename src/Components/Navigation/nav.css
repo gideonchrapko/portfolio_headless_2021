@@ -1,10 +1,14 @@
 .nav-container {
     background-color: #FF00A7;
     border-radius: 40px 40px 0px 0px;
+    width: 90vw;
+    margin-left: 5vw;
 }
 
-.blend {
-    mix-blend-mode: none;
+.nav-container-mobile {
+    background-color: #FF00A7;
+    border-radius: 40px 40px 40px 40px;
+    margin: 10px 10px 10px 10px;
 }
 
 .nav-text {

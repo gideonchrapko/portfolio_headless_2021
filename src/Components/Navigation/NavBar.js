@@ -27,6 +27,7 @@ const NavBar = ({slugRoute, postData}) => {
     },[postData])
 
     const titleIndexLength = postData && postData.length - 1
+    const mobileView = window.innerWidth < 600
 
     useEffect(() => {
         setMenuVisible(!menuVisible)
@@ -75,19 +76,17 @@ const NavBar = ({slugRoute, postData}) => {
             }
         }
 
-        console.log(titleIndex, "title index")
-        console.log(postData, "postDataString")
-
     return (
         <motion.div
             initial={{ y: 100 }}
             animate={{ y: 0 }}
             exit={{ y: 100 }}
             transition={spring}
-            className="fixed-bottom blend"
+            // className="fixed-bottom"
+            className={mobileView ? "nav-container-mobile fixed-bottom" : "nav-container fixed-bottom"}
         >
             <Container >
-                <Row className="nav-container" >   
+                <Row >   
                     <Col lg={4} xs={4} style={{ textAlign: "center"}}>
                         <h5 className="nav-text" onClick={() => history.push('/')}>{route === "home" ? "About" : "Home"}</h5>
                     </Col>

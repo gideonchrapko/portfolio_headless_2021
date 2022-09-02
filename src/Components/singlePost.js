@@ -26,6 +26,7 @@ const SinglePost = () => {
   const [section, setSection] = useState(0)
   // const indexLength = singlePost && singlePost[0].sectionContent[modalImage].sectionImages.length - 1
   const builder = imageUrlBuilder(sanityClient)
+  const mobileView = window.innerWidth < 600
 
   function urlFor(source) {
     return builder.image(source)
@@ -123,12 +124,34 @@ const SinglePost = () => {
               className='close-modal'
             />
             {singlePost[0].sectionContent[modalImage].sectionImages.length <= 2 ?
-                <img alt={`${modalIndex}`} src={urlFor(singlePost[0].sectionContent[modalImage].sectionImages[1].asset).url()} className="modal-image"/>
+              <div 
+                style={{ 
+                   backgroundImage: `url(${urlFor(singlePost[0].sectionContent[modalImage].sectionImages[1].asset).url()})`,
+                   backgroundRepeat: "no-repeat",
+                   backgroundSize: "contain",
+                   backgroundPosition: "center",
+                   height: "100vh",
+                   marginleft: "5vw",
+                   }}
+                 >
+               </div>
+                // <img alt={`${modalIndex}`} src={urlFor(singlePost[0].sectionContent[modalImage].sectionImages[1].asset).url()} className="modal-image"/>
               :
               <>
+                <div 
+                  style={{ 
+                    backgroundImage: `url(${urlFor(singlePost[0].sectionContent[modalImage].sectionImages[modalIndex].asset).url()})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "contain",
+                    backgroundPosition: "center",
+                    height: "100vh",
+                    marginleft: "5vw",
+                    }}
+                  >
+                </div>
                 <img alt="View Next" src={Arrow} className='modal-arrow-right' onClick={() => rightModalImage()} />
                 <img alt='View Previous' src={Arrow} className='modal-arrow-left' onClick={() => leftModalImage()} />
-                <img alt={`${modalIndex}`} src={urlFor(singlePost[0].sectionContent[modalImage].sectionImages[modalIndex].asset).url()} className="modal-image"/>
+                {/* <img alt={`${modalIndex}`} src={urlFor(singlePost[0].sectionContent[modalImage].sectionImages[modalIndex].asset).url()} className={mobileView ? "modal-image-mobile" : "modal-image"}/> */}
                 <h1 className='modal-page-text' >{`${modalIndex} / ${indexLength}`}</h1>
               </>
             } 
@@ -172,7 +195,12 @@ const SinglePost = () => {
                         <h6><a href="https://wccdrops.com/" style={{ color: "black" }}>{tldr ? "View Site" : ""}</a></h6>
                       </div>
                     </div>
-                    <div style={{ backgroundImage: `url(${project.mainImage.asset.url})`, width: `${tldr ? "50%" : "100%" }`, height: `${tldr ? "15vh" : "40vh" }` }} 
+                    <div
+                      style={{ 
+                        backgroundImage: `url(${ project.mainImage.asset.url })`, 
+                        width: `${ tldr ? "50%" : "100%" }`, 
+                        height: `${ tldr ? "15vh" : "40vh" }`,
+                      }} 
                       alt={project.projectTitle} className="sing_proj_headerimg" 
                     >
                       <h1 className="sing_proj_headerTitle">{!tldr ? project.projectTitle : "" }</h1>
@@ -236,7 +264,7 @@ const SinglePost = () => {
                       </Row>
                     </>
                     :
-                    <spam></spam>
+                    <span></span>
                   }
                   {project && !tldr && 
                     project.sectionContent.map((proj, i) => (

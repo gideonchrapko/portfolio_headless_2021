@@ -16,13 +16,14 @@ body {
 canvas {
   outline: none;
   z-index: 0;
-  /* height: 100vh */
 }
 
 .container-section {
   position: relative;
   /* top: 40vh; */
   height: 100vh;
+  /* left: 10vw;
+  width: 80vw; */
 }
 
 .container-section-project {
@@ -52,7 +53,7 @@ canvas {
 .first span{ 
   display: inline-block;
   position: relative;
-  font-size: clamp(35pt, 8.5vw, 120pt);
+  font-size: clamp(35pt, 8vw, 80pt);
   font-family: Helvetica, sans-serif;
   font-weight: 600;
   font-style: normal;
@@ -64,7 +65,7 @@ canvas {
 .last span{ 
   display: inline-block;
   position: relative;
-  font-size: clamp(35pt, 8.5vw, 120pt);
+  font-size: clamp(35pt, 8vw, 80pt);
   font-family: Helvetica, sans-serif;
   font-weight: 600;
   font-style: normal;
@@ -119,13 +120,13 @@ canvas {
 /* Project Section */
 
 .proj_row {
-  left: 10%;
   position: relative;
   background-color: #BAFF00; 
   border-radius: 50px; 
-  border: 3px solid white;
+
   cursor: pointer;
   z-index: 2;
+  /* width: 100%; */
 }
 
 .proj_col {
@@ -155,28 +156,25 @@ canvas {
 }
 
 .proj_mainImage {
-  height: 90%; 
-  margin-top: 1.7%;
-  border-radius: 38px; 
+  height: 100%;
+  /* width: 110%; */
+  border-radius: 45px; 
   background-size: cover; 
   background-position: center;
+  margin-right: -7.5px;
 }
 
 .roj_row_img_anim {
   background-size: cover; 
   background-position: center;
   height: 100%;
-  border-radius: 50px; 
-  border: 3px solid white;
+  border-radius: 50px;
   cursor: pointer;
 }
 
 .proj_row_img {
-  width: 40vw; 
-  right: 10%;
-  position: absolute;
-  height: 85vh;
-  top: 0;
+  position: relative;
+  height: 100%;
 }
 
 .proj_arrow {
@@ -381,12 +379,21 @@ canvas {
 }
 
 .modal-image {
-  height: 80vh;
   border-radius: 20px;
   display: block;
   margin: 0 auto;
   margin-top: 10vh;
   max-width: 1200px;
+  height: 80vh;
+}
+
+.modal-image-mobile {
+  border-radius: 20px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10vh;
+  max-width: 400px;
+  height: 80vh;
 }
 
 .tldr-div {
@@ -448,10 +455,10 @@ canvas {
 }
 
 .modal-arrow-left {
- height: 80px;
+ height: 70px;
  position: fixed;
  top: 43vh;
- left: 50px;
+ left: 30px;
  cursor: pointer;
  transition: transform 0.2s;
 }
@@ -465,10 +472,10 @@ canvas {
 }
 
 .modal-arrow-right {
-  height: 80px;
+  height: 70px;
   position: fixed;
   top: 43vh;
-  right: 50px;
+  right: 30px;
   transform: rotate(180deg);
   transition: transform 0.2s;
   cursor: pointer;
