@@ -319,21 +319,20 @@ canvas {
   transition: width ease-in-out 0.5s;
   text-align: right;
   font-weight: 700;
-  font-size: 30pt;
+  font-size: clamp(16pt, 5vw, 30pt);
   padding-right: 20px;
   line-height: 0.9;
-  width: 60%;
+  width: 80%;
   float: right;
 }
 
 .tldr-image {
   height: 400%;
-  border-radius: 40px;
   width: 100%;
   display: inline-block;
-  background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 .sing-proj-modular-tldr {
@@ -396,6 +395,14 @@ canvas {
   height: 80vh;
 }
 
+.modalImage-size {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 100vh;
+  /* margin-left: 5vw; */
+}
+
 .tldr-div {
   width: 100px;
   float: right;
@@ -403,7 +410,20 @@ canvas {
   border-radius: 40px 0px 0px 40px; 
   cursor: pointer;
   transition: transform 0.5s;
-  position: relative;
+  position: fixed; 
+  right: 0; 
+  z-index: 9999;
+}
+
+.tldr-div-mobile {
+  height: 80px;
+  width: 80px;
+  border-radius: 40px 40px 40px 40px; 
+  cursor: pointer;
+  position: fixed;
+  right: 10px; 
+  bottom: 100px;
+
 }
 
 .tldr-font {
@@ -412,6 +432,14 @@ canvas {
   text-align: center;
   margin-top: 80px;
   font-size: 30pt;
+}
+
+.tldr-font-mobile {
+  font-weight: 800;
+  height: 80px;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 12pt;
 }
 
 .sing-prod-index {

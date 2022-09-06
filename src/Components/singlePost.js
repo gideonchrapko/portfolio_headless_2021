@@ -125,29 +125,13 @@ const SinglePost = () => {
             />
             {singlePost[0].sectionContent[modalImage].sectionImages.length <= 2 ?
               <div 
-                style={{ 
-                   backgroundImage: `url(${urlFor(singlePost[0].sectionContent[modalImage].sectionImages[1].asset).url()})`,
-                   backgroundRepeat: "no-repeat",
-                   backgroundSize: "contain",
-                   backgroundPosition: "center",
-                   height: "100vh",
-                   marginleft: "5vw",
-                   }}
-                 >
+                className='modalImage-size'
+                style={{ backgroundImage: `url(${urlFor(singlePost[0].sectionContent[modalImage].sectionImages[1].asset).url()})` }}>
                </div>
                 // <img alt={`${modalIndex}`} src={urlFor(singlePost[0].sectionContent[modalImage].sectionImages[1].asset).url()} className="modal-image"/>
               :
               <>
-                <div 
-                  style={{ 
-                    backgroundImage: `url(${urlFor(singlePost[0].sectionContent[modalImage].sectionImages[modalIndex].asset).url()})`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "contain",
-                    backgroundPosition: "center",
-                    height: "100vh",
-                    marginleft: "5vw",
-                    }}
-                  >
+                <div className='modalImage-size' style={{ backgroundImage: `url(${urlFor(singlePost[0].sectionContent[modalImage].sectionImages[modalIndex].asset).url()})`}} >
                 </div>
                 <img alt="View Next" src={Arrow} className='modal-arrow-right' onClick={() => rightModalImage()} />
                 <img alt='View Previous' src={Arrow} className='modal-arrow-left' onClick={() => leftModalImage()} />
@@ -188,6 +172,7 @@ const SinglePost = () => {
                       })
                     }
                   </Col>
+                  
                   <Col lg={{ span: 10, offset: 1 }}>
                     <div style={{ height: "100%", width: `${tldr ? "50%" : "0%" }`, float: "left", transition: "width ease-in-out 0.5s" }} >
                       <h1 className='tldr-project-title' >{tldr ? project.projectTitle : ""}</h1>
@@ -198,8 +183,7 @@ const SinglePost = () => {
                     <div
                       style={{ 
                         backgroundImage: `url(${ project.mainImage.asset.url })`, 
-                        width: `${ tldr ? "50%" : "100%" }`, 
-                        height: `${ tldr ? "15vh" : "40vh" }`,
+                        width: `${ tldr ? "50%" : "100%" }`, height: `${ tldr ? "15vh" : "40vh" }`
                       }} 
                       alt={project.projectTitle} className="sing_proj_headerimg" 
                     >
@@ -217,13 +201,25 @@ const SinglePost = () => {
                       <span></span>                    
                     }
                   </Col>
-                  <Col lg={{ span: 1 }} style={{ position: "fixed", right: "0", zIndex: "9999" }}>
-                    <div style={{ background: `${ tldr ? "white" : "#00E4B6" }`, border: `${ tldr ? "5px solid #00E4B6" : "" }`, transform: `translateX(${hover ? "20px" : "30px"})` }}
-                      onClick={() => setTldr(!tldr)} onPointerOver={() => setHover(true)} onPointerOut={() => setHover(false)} className='tldr-div'
-                    >
-                      <h1 style={{ color: `${ tldr ? "#00E4B6" : "white" }`, WebkitTransform: "rotate(-90deg)" }} className="tldr-font">TLDR</h1>
-                    </div>
+
+                  <Col lg={{ span: 1 }} style={{ position: "fixed", zIndex: "99" }}>
+                    {mobileView ?
+                      <div
+                        className='tldr-div-mobile'
+                        style={{ background: `${ tldr ? "transparent" : "#00E4B6" }`, border: `${ tldr ? "2px solid #00E4B6" : "" }` }}
+                        onClick={() => setTldr(!tldr)} onPointerOver={() => setHover(true)} onPointerOut={() => setHover(false)}
+                      >
+                        <h1 style={{ color: `${ tldr ? "#00E4B6" : "white" }` }} className="tldr-font-mobile">TLDR</h1>
+                      </div>
+                      :
+                      <div style={{ background: `${ tldr ? "white" : "#00E4B6" }`, border: `${ tldr ? "5px solid #00E4B6" : "" }`, transform: `translateX(${hover ? "20px" : "30px"})` }}
+                        onClick={() => setTldr(!tldr)} onPointerOver={() => setHover(true)} onPointerOut={() => setHover(false)} className='tldr-div'
+                      >
+                        <h1 style={{ color: `${ tldr ? "#00E4B6" : "white" }`, WebkitTransform: "rotate(-90deg)" }} className="tldr-font">TLDR</h1>
+                      </div>
+                    }
                   </Col>
+                  
                 </Row>
                 {!tldr ?
                   <>
@@ -298,7 +294,7 @@ const SinglePost = () => {
                                       src={urlFor(proj.sectionImages[0].asset).url()}
                                       className="sing_proj_img"
                                       alt={`${project.sectionTitle[i + 1]} images`}
-                                      style={{ width: `${window.innerWidth > 600 ? "60%" : "80%" }` }}
+                                      style={{ width: `${mobileView ? "80%" : "60%" }` }}
                                     />
                                     <h6>Click for details</h6>
                                     </>

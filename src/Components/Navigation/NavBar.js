@@ -32,61 +32,57 @@ const NavBar = ({slugRoute, postData}) => {
     useEffect(() => {
         setMenuVisible(!menuVisible)
         window.scrollTo(0,0)
-      },[])
+    },[])
 
-      useEffect(() => {
-            // this needs to be reworked for 404 pages 
-            if (pathString === "project") {
-                setRoute("project")
-            } else {
-                setRoute("home")
-            }
-      },[route])
-
-        function handleHoverLeft() {
-            if(titleIndex > 0){
-                setTitleIndex(titleIndex - 1)
-            } 
-            if (titleIndex === 0) {
-                setTitleIndex(titleIndexLength)
-            }
+    useEffect(() => {
+        // this needs to be reworked for 404 pages 
+        if (pathString === "project") {
+            setRoute("project")
+        } else {
+            setRoute("home")
         }
+    },[route])
 
-        function handleOutLeft() {
-            if(titleIndex === titleIndexLength){
-                setTitleIndex(0)
-            } else {
-                setTitleIndex(titleIndex + 1)
-            }
+    function handleHoverLeft() {
+        if(titleIndex > 0){
+            setTitleIndex(titleIndex - 1)
+        } 
+        if (titleIndex === 0) {
+            setTitleIndex(titleIndexLength)
         }
+    }
 
-        function handleHoverRight() {
-            if(titleIndex < titleIndexLength) {
-                setTitleIndex(titleIndex + 1)
-            } else {
-                setTitleIndex(0)
-            }
+    function handleOutLeft() {
+         if(titleIndex === titleIndexLength){
+            setTitleIndex(0)
+        } else {
+            setTitleIndex(titleIndex + 1)
         }
+     }
 
-        function handleOutRight() {
-            if(titleIndex === 0) {
-                setTitleIndex(titleIndex + titleIndexLength)
-            } else {
-                setTitleIndex(titleIndex - 1)
-            }
+    function handleHoverRight() {
+        if(titleIndex < titleIndexLength) {
+            setTitleIndex(titleIndex + 1)
+        } else {
+            setTitleIndex(0)
         }
+    }
+
+    function handleOutRight() {
+        if(titleIndex === 0) {
+            setTitleIndex(titleIndex + titleIndexLength)
+        } else {
+            setTitleIndex(titleIndex - 1)
+        }
+    }
 
     return (
         <motion.div
-            initial={{ y: 100 }}
-            animate={{ y: 0 }}
-            exit={{ y: 100 }}
-            transition={spring}
-            // className="fixed-bottom"
+            initial={{ y: 100 }} animate={{ y: 0 }} exit={{ y: 100 }} transition={spring}
             className={mobileView ? "nav-container-mobile fixed-bottom" : "nav-container fixed-bottom"}
         >
-            <Container >
-                <Row >   
+            <Container>
+                <Row>   
                     <Col lg={4} xs={4} style={{ textAlign: "center"}}>
                         <h5 className="nav-text" onClick={() => history.push('/')}>{route === "home" ? "About" : "Home"}</h5>
                     </Col>
@@ -98,18 +94,11 @@ const NavBar = ({slugRoute, postData}) => {
                             <Col lg={4} xs={4} style={{ textAlign: "center"}}>
                                 <h5 className="nav-text" >CV</h5>
                             </Col> 
-                         </>
-                         :
-                         <>
-                            <Col 
-                                lg={2} 
-                                xs={2} 
-                                style={{ textAlign: "center" }} 
-                            >
+                        </> :
+                        <>
+                            <Col lg={2} xs={2} style={{ textAlign: "center" }} >
                                 <h5 className="nav-text">
-                                    <img alt="Click for next project"
-                                        src={Arrow} 
-                                        className="nav-arrow" 
+                                    <img alt="Click for next project" src={Arrow} className="nav-arrow" 
                                         style={{ transform: `rotate(225deg) scale(${hoverLeft ? 1.1 : 1})` }}
                                         onPointerOver={e => {
                                             handleHoverLeft()
@@ -119,7 +108,7 @@ const NavBar = ({slugRoute, postData}) => {
                                             handleOutLeft()
                                             setHoverLeft(false)
                                         }}
-                                        onClick={() => history.push(`/project/${postData[titleIndex].slugRoute.current}`) }
+                                        onPointerDown={() => history.push(`/project/${postData[titleIndex].slugRoute.current}`) }
                                     />
                                 </h5>
                             </Col> 
@@ -132,11 +121,7 @@ const NavBar = ({slugRoute, postData}) => {
                                     }
                                 </h5>
                             </Col>
-                            <Col 
-                                lg={2} 
-                                xs={2} 
-                                style={{ textAlign: "center" }}
-                            >
+                            <Col lg={2} xs={2} style={{ textAlign: "center" }} >
                                 <h5 className="nav-text">
                                     <img alt="Click for previous project"
                                         src={Arrow} 
@@ -150,7 +135,7 @@ const NavBar = ({slugRoute, postData}) => {
                                             handleOutRight()
                                             setHoverRight(false)
                                         }}
-                                        onClick={() => history.push(`/project/${postData[titleIndex].slugRoute.current}`) }
+                                        onPointerDown={() => history.push(`/project/${postData[titleIndex].slugRoute.current}`) }
                                     />
                                 </h5>
                             </Col> 
