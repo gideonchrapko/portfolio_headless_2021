@@ -143,12 +143,13 @@ const SinglePost = () => {
           :
           <span></span>
         }
-        <div className="container-section-project" style={{ marginBottom: "20vh" }}>
+
+        <div className="container-section-project">
         {singlePost &&
           singlePost.map((project, index) => (
               <span key={index}>
-                <Row>
-                  
+                <Row >
+
                   {/* <Col lg={{ span: 1 }} style={{ position: "fixed", left: "0", width: '12%' }} className='d-xs-none d-md-none d-none d-lg-block'>
                     {project && !tldr &&
                       project.sectionTitle.map((index, i) => {
@@ -261,50 +262,52 @@ const SinglePost = () => {
                     :
                     <span></span>
                   }
-                  {project && !tldr && 
-                    project.sectionContent.map((proj, i) => (
-                      <span key={i}>
-                        <Row>
-                          <Col lg={{ span: 10, offset: 1}}>
-                            <h1 className="sing-proj-head">{project.sectionTitle[i + 1]}</h1>
-                          </Col>
-                        </Row>
-                        <Row className="gx-3">
-                          <Col lg={{ span: 10, offset: 1 }}>
-                             <div className="sing-proj-modular-cont">
-                               <BlockContent 
-                                  blocks={proj.sectionBlock} 
-                                  projectId="kjeh3i1n"
-                                  dataset="production"
-                                 />
-                             </div>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col lg={{ span: 10, offset: 1}} style={{ textAlign: "center" }}>
-                            {proj.sectionImages ?
-                                    <>
-                                    <img 
-                                      onClick={e => {
-                                        setPreviewModal(true)
-                                        setModalImage(i)
-                                        setIndexLength(singlePost[0].sectionContent[i].sectionImages.length - 1)
-                                      }}
-                                      src={urlFor(proj.sectionImages[0].asset).url()}
-                                      className="sing_proj_img"
-                                      alt={`${project.sectionTitle[i + 1]} images`}
-                                      style={{ width: `${mobileView ? "80%" : "60%" }` }}
-                                    />
-                                    <h6>Click for details</h6>
-                                    </>
-                                :
-                                <span></span>
-                              }  
-                          </Col>
-                        </Row>
-                      </span>
-                    ))
-                  }
+                  <div style={{ paddingBottom: "20vh" }}>
+                    {project && !tldr && 
+                      project.sectionContent.map((proj, i) => (
+                        <span key={i}>
+                          <Row>
+                            <Col lg={{ span: 10, offset: 1}}>
+                              <h1 className="sing-proj-head">{project.sectionTitle[i + 1]}</h1>
+                            </Col>
+                          </Row>
+                          <Row className="gx-3">
+                            <Col lg={{ span: 10, offset: 1 }}>
+                              <div className="sing-proj-modular-cont">
+                                <BlockContent 
+                                    blocks={proj.sectionBlock} 
+                                    projectId="kjeh3i1n"
+                                    dataset="production"
+                                  />
+                              </div>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col lg={{ span: 10, offset: 1}} style={{ textAlign: "center" }}>
+                              {proj.sectionImages ?
+                                      <>
+                                      <img 
+                                        onClick={e => {
+                                          setPreviewModal(true)
+                                          setModalImage(i)
+                                          setIndexLength(singlePost[0].sectionContent[i].sectionImages.length - 1)
+                                        }}
+                                        src={urlFor(proj.sectionImages[0].asset).url()}
+                                        className="sing_proj_img"
+                                        alt={`${project.sectionTitle[i + 1]} images`}
+                                        style={{ width: `${mobileView ? "80%" : "60%" }` }}
+                                      />
+                                      <h6>Click for details</h6>
+                                      </>
+                                  :
+                                  <span></span>
+                                }  
+                            </Col>
+                          </Row>
+                        </span>
+                      ))
+                    }
+                  </div>
               </span>
           ))}
           </div>
