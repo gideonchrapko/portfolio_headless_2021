@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Link } from 'react-scroll';
+
 import Arrow from '../../Assets/proj_arrows_white.svg'
 
 import './nav.css';
@@ -84,15 +86,24 @@ const NavBar = ({slugRoute, postData}) => {
             <Container>
                 <Row>   
                     <Col lg={4} xs={4} style={{ textAlign: "center"}}>
-                        <h5 className="nav-text" onClick={() => history.push('/')}>{route === "home" ? "About" : "Home"}</h5>
+                        {route === "home" ?
+                            <Link to="about" spy={true} smooth={true} offset={50} duration={100} >
+                                <h5 className="nav-text">About</h5>
+                            </Link> :
+                            <h5 className="nav-text" onClick={() => history.push('/')}>Home</h5>
+                        }
                     </Col>
                     {route === "home" ?
                         <>
                             <Col lg={4} xs={4} style={{ textAlign: "center"}}>
-                                <h5 className="nav-text" >Projects</h5>
+                                <Link to="projects" spy={true} smooth={true} offset={50} duration={100} >
+                                    <h5 className="nav-text" >Projects</h5>
+                                </Link>
                             </Col>
                             <Col lg={4} xs={4} style={{ textAlign: "center"}}>
-                                <h5 className="nav-text" >CV</h5>
+                                <Link to="cv" spy={true} smooth={true} offset={50} duration={100} >
+                                    <h5 className="nav-text" >CV</h5>
+                                </Link>
                             </Col> 
                         </> :
                         <>

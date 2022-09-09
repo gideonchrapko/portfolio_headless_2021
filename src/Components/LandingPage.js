@@ -6,6 +6,7 @@ import { Canvas } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
 import BlockContent from '@sanity/block-content-to-react';
 import { motion } from 'framer-motion';
+import { Element} from 'react-scroll'
 
 import Controls from './3D/Controls';
 import Model from './3D/SignNeon';
@@ -126,108 +127,110 @@ const LandingPage = () => {
       const spring = { duration: 1, ease: [0.4, 0.13, 0.23, 0.96]}
 
     return (
-        <motion.div 
-            initial='initial'
-            animate='animate'
-            exit='exit'
-        >
-        <NavHead/>
-        <NavBar/>
-        <Container fluid >
             <motion.div 
-                className="container-section child"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-            >      
-                <Row style={{ paddingTop: "30vh" }}>
-                    <Col
-                        lg={{ offset: 1, span: 5 }}
-                        xs={{ offset: 1, span: 10 }}
-                    >
-                    <motion.div className='model'>
-                        <motion.span className='first' variants={firstName}>
-                            <motion.span variants={letter}>G</motion.span>
-                            <motion.span variants={letter}>i</motion.span>
-                            <motion.span variants={letter}>d</motion.span>
-                            <motion.span variants={letter}>e</motion.span>
-                            <motion.span variants={letter}>o</motion.span>
-                            <motion.span variants={letter}>n</motion.span>
-                        </motion.span><br/>
-                        <motion.span className='last' variants={lastName}>
-                            <motion.span variants={letter}>C</motion.span>
-                            <motion.span variants={letter}>h</motion.span>
-                            <motion.span variants={letter}>r</motion.span>
-                            <motion.span variants={letter}>a</motion.span>
-                            <motion.span variants={letter}>p</motion.span>
-                            <motion.span variants={letter}>k</motion.span>
-                            <motion.span variants={letter}>o</motion.span>
-                        </motion.span>
-                        </motion.div>
-                        </Col>
-                        <Col lg={6}
-                            md={6}
-                            sm={12}
-                            xs={12}
-                            style={{ height: "100vh", right: "0", position: "absolute", marginTop: "-40vh" }}
-                        >
-                        <Canvas shadows style={{ height: "70vh" }}>
-                            <Suspense fallback={<Html center>...Loading</Html>}>
-                                <pointLight position={[0, 1, 0]} intensity={1} color={'white'} />                                
-                                <ambientLight intensity={3} />
-                                <Model />
-                                <Controls />
-                            </Suspense>
-			            </Canvas>
-                        </Col>
-                    </Row>
-                    <Row>
+                initial='initial'
+                animate='animate'
+                exit='exit'
+            >
+            <NavHead/>
+            <NavBar/>
+            <Container fluid >
+                <Element name="about">
+                <motion.div 
+                    className="container-section child"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >      
+                    <Row style={{ paddingTop: "30vh" }}>
                         <Col
-                            lg={{ offset: 1, span: 4 }}
-                            xs={{ offset: 1, span: 6 }}
+                            lg={{ offset: 1, span: 5 }}
+                            xs={{ offset: 1, span: 10 }}
                         >
-                            <h4 className="subheadTitle">UX & UI CASE STUDY</h4>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col
-                            lg={{ offset: 1, span: 1 }}
-                            md={{ offset: 1, span: 1 }}
-                            sm={{ offset: 1, span: 1 }}
-                            xs={{ offset: 1, span: 1 }}
-                        >
-                            <h1 className="subheadDate">{year}</h1>
-                        </Col>
-                        <Col
-                            lg={{ offset: 0, span: 2 }}
-                            md={{ offset: 0, span: 2 }}
-                            sm={{ offset: 0, span: 2 }}
-                            xs={{ offset: 0, span: 3 }}
-                        >
-                            <h6 className="bodyDescrip">
-                                <BlockContent 
-                                    blocks={landingPageData && landingPageData[0].BioParagraph1}
-                                    projectId="kjeh3i1n"
-                                    dataset="production"
-                                />
-                            </h6>
-                        </Col>
-                        <Col
-                            lg={{ offset: 0, span: 2 }}
-                            xs={{ offset: 0, span: 3 }}
-                        >
-                            <h6 className="bodyDescrip">
-                                <BlockContent 
-                                    blocks={landingPageData && landingPageData[0].BioParagraph2}
-                                    projectId="kjeh3i1n"
-                                    dataset="production"
-                                />                           
-                             </h6>
-                        </Col>
-                    </Row>
-                </motion.div>
+                        <motion.div className='model'>
+                            <motion.span className='first' variants={firstName}>
+                                <motion.span variants={letter}>G</motion.span>
+                                <motion.span variants={letter}>i</motion.span>
+                                <motion.span variants={letter}>d</motion.span>
+                                <motion.span variants={letter}>e</motion.span>
+                                <motion.span variants={letter}>o</motion.span>
+                                <motion.span variants={letter}>n</motion.span>
+                            </motion.span><br/>
+                            <motion.span className='last' variants={lastName}>
+                                <motion.span variants={letter}>C</motion.span>
+                                <motion.span variants={letter}>h</motion.span>
+                                <motion.span variants={letter}>r</motion.span>
+                                <motion.span variants={letter}>a</motion.span>
+                                <motion.span variants={letter}>p</motion.span>
+                                <motion.span variants={letter}>k</motion.span>
+                                <motion.span variants={letter}>o</motion.span>
+                            </motion.span>
+                            </motion.div>
+                            </Col>
+                            <Col lg={6}
+                                md={6}
+                                sm={12}
+                                xs={12}
+                                style={{ height: "100vh", right: "0", position: "absolute", marginTop: "-40vh" }}
+                            >
+                            <Canvas shadows style={{ height: "70vh" }}>
+                                <Suspense fallback={<Html center>...Loading</Html>}>
+                                    <pointLight position={[0, 1, 0]} intensity={1} color={'white'} />                                
+                                    <ambientLight intensity={3} />
+                                    <Model />
+                                    <Controls />
+                                </Suspense>
+                            </Canvas>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col
+                                lg={{ offset: 1, span: 4 }}
+                                xs={{ offset: 1, span: 6 }}
+                            >
+                                <h4 className="subheadTitle">UX & UI CASE STUDY</h4>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col
+                                lg={{ offset: 1, span: 1 }}
+                                md={{ offset: 1, span: 1 }}
+                                sm={{ offset: 1, span: 1 }}
+                                xs={{ offset: 1, span: 1 }}
+                            >
+                                <h1 className="subheadDate">{year}</h1>
+                            </Col>
+                            <Col
+                                lg={{ offset: 0, span: 2 }}
+                                md={{ offset: 0, span: 2 }}
+                                sm={{ offset: 0, span: 2 }}
+                                xs={{ offset: 0, span: 3 }}
+                            >
+                                <h6 className="bodyDescrip">
+                                    <BlockContent 
+                                        blocks={landingPageData && landingPageData[0].BioParagraph1}
+                                        projectId="kjeh3i1n"
+                                        dataset="production"
+                                    />
+                                </h6>
+                            </Col>
+                            <Col
+                                lg={{ offset: 0, span: 2 }}
+                                xs={{ offset: 0, span: 3 }}
+                            >
+                                <h6 className="bodyDescrip">
+                                    <BlockContent 
+                                        blocks={landingPageData && landingPageData[0].BioParagraph2}
+                                        projectId="kjeh3i1n"
+                                        dataset="production"
+                                    />                           
+                                </h6>
+                            </Col>
+                        </Row>
+                    </motion.div>
+                </Element>
 
-                <div className="container-section child" style={{ paddingTop: "15vh" }}>
+                <Element className="container-section child" style={{ paddingTop: "15vh" }} name="projects">
                     <div 
                         //this is supposed to be the container for all mapped divs
                         onMouseLeave={() => setiHovered(false)} 
@@ -312,9 +315,9 @@ const LandingPage = () => {
                             </div>
                         </motion.div>
                     </div>
-                </div>
+                </Element>
 
-                <div className="container-section conatiner-cv child">
+                <Element className="container-section conatiner-cv child" name="cv" >
                     <Row className="gx-3">
                         <Col lg={{ span: 5, offset: 1 }}>
                             <h6 className="cv_title">CONTACT</h6>
@@ -367,7 +370,7 @@ const LandingPage = () => {
                             </div>
                         </Col>
                     </Row>
-                </div>
+                </Element>
         </Container>
         </motion.div>
     )

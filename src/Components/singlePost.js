@@ -127,15 +127,13 @@ const SinglePost = () => {
               <div 
                 className='modalImage-size'
                 style={{ backgroundImage: `url(${urlFor(singlePost[0].sectionContent[modalImage].sectionImages[1].asset).url()})` }}>
-               </div>
-                // <img alt={`${modalIndex}`} src={urlFor(singlePost[0].sectionContent[modalImage].sectionImages[1].asset).url()} className="modal-image"/>
+              </div>
               :
               <>
                 <div className='modalImage-size' style={{ backgroundImage: `url(${urlFor(singlePost[0].sectionContent[modalImage].sectionImages[modalIndex].asset).url()})`}} >
                 </div>
                 <img alt="View Next" src={Arrow} className='modal-arrow-right' onClick={() => rightModalImage()} />
                 <img alt='View Previous' src={Arrow} className='modal-arrow-left' onClick={() => leftModalImage()} />
-                {/* <img alt={`${modalIndex}`} src={urlFor(singlePost[0].sectionContent[modalImage].sectionImages[modalIndex].asset).url()} className={mobileView ? "modal-image-mobile" : "modal-image"}/> */}
                 <h1 className='modal-page-text' >{`${modalIndex} / ${indexLength}`}</h1>
               </>
             } 
@@ -150,7 +148,8 @@ const SinglePost = () => {
           singlePost.map((project, index) => (
               <span key={index}>
                 <Row>
-                  <Col lg={{ span: 1 }} style={{ position: "fixed", left: "0", width: '12%' }} className='d-xs-none d-md-none d-none d-lg-block'>
+                  
+                  {/* <Col lg={{ span: 1 }} style={{ position: "fixed", left: "0", width: '12%' }} className='d-xs-none d-md-none d-none d-lg-block'>
                     {project && !tldr &&
                       project.sectionTitle.map((index, i) => {
                         const indexShorthand = index.length > 10 ? index.substr(0, 20-1) + '...' : index;
@@ -171,7 +170,7 @@ const SinglePost = () => {
                         )
                       })
                     }
-                  </Col>
+                  </Col> */}
                   
                   <Col lg={{ span: 10, offset: 1 }}>
                     <div style={{ height: "100%", width: `${tldr ? "50%" : "0%" }`, float: "left", transition: "width ease-in-out 0.5s" }} >
