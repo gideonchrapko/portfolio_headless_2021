@@ -5,6 +5,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import imageUrlBuilder from '@sanity/image-url';
 import { Container, Col, Row } from 'react-bootstrap';
 import { Link, Element } from 'react-scroll';
+import ReactGa from 'react-ga';
 
 import NavHead from './Navigation/NavHead';
 import NavBar from './Navigation/NavBar';
@@ -75,6 +76,11 @@ const SinglePost = () => {
     .then((data) => setPostData(data))
     .catch(console.error)
   },[])
+
+  useEffect(() => {
+    ReactGa.initialize('UA-241048002-1 ')
+    ReactGa.pageview(`/project/${slugRoute}`)
+},[])
 
   useEffect(() => {
     const keyDownHandler = event => {
@@ -274,10 +280,10 @@ const SinglePost = () => {
                             <Col lg={{ span: 10, offset: 1 }}>
                               <div className="sing-proj-modular-cont">
                                 <BlockContent 
-                                    blocks={proj.sectionBlock} 
-                                    projectId="kjeh3i1n"
-                                    dataset="production"
-                                  />
+                                  blocks={proj.sectionBlock} 
+                                  projectId="kjeh3i1n"
+                                  dataset="production"
+                                />
                               </div>
                             </Col>
                           </Row>

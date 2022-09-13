@@ -64,7 +64,7 @@ const firstName = {
 
 const LandingPage = () => {
     useEffect(() => {
-        ReactGa.initialize('G-KRY22T4HVJ')
+        ReactGa.initialize('UA-241048002-1 ')
         ReactGa.pageview('/')
     },[])
 
