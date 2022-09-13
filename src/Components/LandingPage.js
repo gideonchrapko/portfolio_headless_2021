@@ -63,9 +63,10 @@ const firstName = {
   };
 
 const LandingPage = () => {
-
-		ReactGa.initialize('G-KRY22T4HVJ')
-		ReactGa.pageview('/')
+    useEffect(() => {
+        ReactGa.initialize('G-KRY22T4HVJ')
+        ReactGa.pageview('/')
+    },[])
 
     const [iHovered, setiHovered] = useState(false);
     const [postData, setPostData] = useState(null);
