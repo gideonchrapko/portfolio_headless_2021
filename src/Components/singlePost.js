@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import sanityClient from '../client';
 import BlockContent from '@sanity/block-content-to-react';
-import imageUrlBuilder from '@sanity/image-url'
+import imageUrlBuilder from '@sanity/image-url';
 import { Container, Col, Row } from 'react-bootstrap';
-// import {motion} from 'framer-motion';
+import { Link, Element } from 'react-scroll';
 
 import NavHead from './Navigation/NavHead';
 import NavBar from './Navigation/NavBar';
@@ -148,9 +148,8 @@ const SinglePost = () => {
         {singlePost &&
           singlePost.map((project, index) => (
               <span key={index}>
-                <Row >
-
-                  {/* <Col lg={{ span: 1 }} style={{ position: "fixed", left: "0", width: '12%' }} className='d-xs-none d-md-none d-none d-lg-block'>
+                <Row>
+                  <Col lg={{ span: 1 }} style={{ position: "fixed", left: "0", width: '12%' }} className='d-xs-none d-md-none d-none d-lg-block'>
                     {project && !tldr &&
                       project.sectionTitle.map((index, i) => {
                         const indexShorthand = index.length > 10 ? index.substr(0, 20-1) + '...' : index;
@@ -159,20 +158,20 @@ const SinglePost = () => {
                             <span style={{ backgroundColor: `${section === i ? 'red' : indexHov === i ? "red" : "white" }` }}
                               className="dot">
                             </span>
-                            <span style={{ fontWeight: `${section === i ? 500 : indexHov === i ? "500" : "300" }`,
-                                color: `${section === i ? 'black' : indexHov === i ? "black" : "rgba(167, 167, 167, 0.9)"}`
-                               }}
-                              onClick={() => setSection(i)} onPointerOver={() => setIndexHov(i)} onPointerOut={() => setIndexHov()}
+                            <span style={{ color: `${section === i ? 'black' : indexHov === i ? "black" : "rgba(167, 167, 167, 0.9)"}` }}
                               className='sing-prod-index'
                             >
-                                {indexShorthand}
+                                <Link to={`Element${i}`} spy={true} smooth={true} offset={50} duration={100} activeClass="activeClass"
+                                  onSetActive={() => setSection(i)} onPointerOver={() => setIndexHov(i)} onPointerOut={() => setIndexHov()}
+                                >
+                                  {indexShorthand}
+                                </Link>
                             </span>
                           </div>
                         )
                       })
                     }
-                  </Col> */}
-                  
+                  </Col>
                   <Col lg={{ span: 10, offset: 1 }}>
                     <div style={{ height: "100%", width: `${tldr ? "50%" : "0%" }`, float: "left", transition: "width ease-in-out 0.5s" }} >
                       <h1 className='tldr-project-title' >{tldr ? project.projectTitle : ""}</h1>
@@ -180,7 +179,7 @@ const SinglePost = () => {
                         <h6><a href="https://wccdrops.com/" style={{ color: "black" }}>{tldr ? "View Site" : ""}</a></h6>
                       </div>
                     </div>
-                    <div
+                    <Element name="Element0"
                       style={{ 
                         backgroundImage: `url(${ project.mainImage.asset.url })`, 
                         width: `${ tldr ? "50%" : "100%" }`, height: `${ tldr ? "15vh" : "40vh" }`
@@ -193,7 +192,7 @@ const SinglePost = () => {
                         :
                         <span></span>
                        }
-                    </div>
+                    </Element>
                     {tldr ?
                       <div style={{ backgroundImage: `url(${project.tldrClip.asset.url})` }} className='tldr-image'>
                       </div>
@@ -262,10 +261,10 @@ const SinglePost = () => {
                     :
                     <span></span>
                   }
-                  <div style={{ paddingBottom: "20vh" }}>
+                  <div style={{ paddingBottom: "30vh" }}>
                     {project && !tldr && 
                       project.sectionContent.map((proj, i) => (
-                        <span key={i}>
+                        <Element key={i} name={`Element${i + 1}`}>
                           <Row>
                             <Col lg={{ span: 10, offset: 1}}>
                               <h1 className="sing-proj-head">{project.sectionTitle[i + 1]}</h1>
@@ -304,7 +303,7 @@ const SinglePost = () => {
                                 }  
                             </Col>
                           </Row>
-                        </span>
+                        </Element>
                       ))
                     }
                   </div>

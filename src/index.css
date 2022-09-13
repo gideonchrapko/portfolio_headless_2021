@@ -445,6 +445,7 @@ canvas {
 .sing-prod-index {
   font-size: clamp(5pt, 1vw, 8pt);
   cursor: pointer; 
+  font-weight: 300;
 }
 
 .backgroundDiv {
@@ -522,3 +523,8 @@ canvas {
   width: 100vw;
 }
 
+.activeClass {
+  color:  black;
+  text-decoration: none;
+  font-weight: 500;
+}

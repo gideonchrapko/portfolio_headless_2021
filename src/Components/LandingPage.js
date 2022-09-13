@@ -6,7 +6,8 @@ import { Canvas } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
 import BlockContent from '@sanity/block-content-to-react';
 import { motion } from 'framer-motion';
-import { Element} from 'react-scroll'
+import { Element} from 'react-scroll';
+import ReactGa from 'react-ga'
 
 import Controls from './3D/Controls';
 import Model from './3D/SignNeon';
@@ -62,6 +63,10 @@ const firstName = {
   };
 
 const LandingPage = () => {
+
+		ReactGa.initialize('G-KRY22T4HVJ')
+		ReactGa.pageview('/')
+
     const [iHovered, setiHovered] = useState(false);
     const [postData, setPostData] = useState(null);
     const [imgSrc, setImgSrc] = useState(null);
