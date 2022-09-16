@@ -328,7 +328,7 @@ const LandingPage = () => {
                         <Col lg={{ span: 5, offset: 1 }}>
                             <h6 className="cv_title">CONTACT</h6>
                             <div className="modular-cont">
-                                <h1 className="cv-contact">gideonchrapko@gmail.com</h1>
+                                <h1 className="cv-contact">contact@gideonchrapko.me</h1>
                              </div>
                         </Col>
                         <Col lg={1} xs={3}>
