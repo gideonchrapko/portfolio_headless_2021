@@ -243,7 +243,9 @@ canvas {
 .work-exp-col {
   width: 33%;
   padding: 10px 10px 10px 0px;
-  display: inline-block
+  display: inline-block;
+  height: 40vh;
+  /* position: absolute; */
 }
 
 .work-exp-head {

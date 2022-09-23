@@ -352,7 +352,7 @@ const LandingPage = () => {
                                     <div className="work-exp-col">
                                         <h1 className="work-exp-head" >UI/UX DESIGNER / HYPREMIUM</h1>
                                         <h3 className="work-exp-sub" >2018–2019, LOS ANGELES</h3>
-                                        <h6 className="work-exp-body">At Hypremium I provided all icon assets to developers and had them greenlit by our UX Design lead. I would provide assets in appropriate sizes and formats according to the Apple Human Interface Guidelines. I participated in weekly scrum meetings headed by CTO Victor Frolov and gave updates relevant updates on progress and projected milestones. I created and exported Lottie animations to be featured on onboarding screens, loading animations etc.</h6>
+                                        <h6 className="work-exp-body">At Hypremium I provided all icon assets to developers and had them greenlit by our UX Design lead. I would provide assets in appropriate sizes and formats according to the Apple Human Interface Guidelines. I participated in weekly scrum meetings headed by CTO Victor Frolov and gave updates relevant updates on progress and projected milestones. I created and exported Lottie animations for the app.</h6>
                                     </div>
                                     <div className="work-exp-col">
                                         <h1 className="work-exp-head" >WEST COAST CUSTOMS</h1>
