@@ -352,7 +352,7 @@ const LandingPage = () => {
                                     <div className="work-exp-col">
                                         <h1 className="work-exp-head" >UI/UX DESIGNER / HYPREMIUM</h1>
                                         <h3 className="work-exp-sub" >2018–2019, LOS ANGELES</h3>
-                                        <h6 className="work-exp-body">I utilized rapid prototyping with InVision, mocking up transitions and animations while I worked side by side Front End Developers to match exact wireframes and font sizes to the pixel. Throughout the application I created Lottie json animations for on-boarding screens, loading screens and UI assets and during beta testing stages of the app I was able to reach out and speak with users future users of the app.</h6>
+                                        <h6 className="work-exp-body">At Hypremium I provided all icon assets to developers and had them greenlit by our UX Design lead. I would provide assets in appropriate sizes and formats according to the Apple Human Interface Guidelines. I participated in weekly scrum meetings headed by CTO Victor Frolov and gave updates relevant updates on progress and projected milestones. I created and exported Lottie animations to be featured on onboarding screens, loading animations etc. I created low fidelity and high-fidelity wireframes as well as worked with front end developers to implement designs.</h6>
                                     </div>
                                     <div className="work-exp-col">
                                         <h1 className="work-exp-head" >WEST COAST CUSTOMS</h1>
