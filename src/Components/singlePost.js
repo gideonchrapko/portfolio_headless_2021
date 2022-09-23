@@ -138,9 +138,11 @@ const SinglePost = () => {
               <>
                 <div className='modalImage-size' style={{ backgroundImage: `url(${urlFor(singlePost[0].sectionContent[modalImage].sectionImages[modalIndex].asset).url()})`}} >
                 </div>
-                <img alt="View Next" src={Arrow} className='modal-arrow-right' onClick={() => rightModalImage()} />
-                <img alt='View Previous' src={Arrow} className='modal-arrow-left' onClick={() => leftModalImage()} />
-                <h1 className='modal-page-text' >{`${modalIndex} / ${indexLength}`}</h1>
+                  <img alt="View Next" src={Arrow} className='modal-arrow-right' onClick={() => rightModalImage()} />
+                  <img alt='View Previous' src={Arrow} className='modal-arrow-left' onClick={() => leftModalImage()} />
+                  <div style={{ width: "100vw", position: "fixed", zIndex: "9999", bottom: "25px" }}>
+                    <h1 className='modal-page-text' >{`${modalIndex} / ${indexLength}`}</h1>
+                  </div>
               </>
             } 
             <div className='backgroundDiv' onClick={() => setPreviewModal(false)}>

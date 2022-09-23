@@ -481,6 +481,8 @@ canvas {
   cursor: pointer; 
   position: fixed;
   transition: transform 0.2s;
+
+  filter: drop-shadow(1px 1px 10px #1d1d1d38);
 }
 
 .modal-arrow-left {
@@ -517,10 +519,18 @@ canvas {
 .modal-page-text {
   font-size: 15pt;
   font-weight: 800;
-  position: fixed;
-  color: white;
+
+  color: black;
   text-align: center;
-  width: 100vw;
+
+  background-color: white;
+  border-radius: 20px;
+  width: 5%;
+  padding-top: 5px;
+  height: 40px;
+  margin-left: 47.5%;
+
+  filter: drop-shadow(1px 1px 10px #1d1d1d38);
 }
 
 .activeClass {
