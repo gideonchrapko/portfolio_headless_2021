@@ -93,7 +93,6 @@ const LandingPage = () => {
             slugRoute,
             projectTitle,
             projectOverview,
-            projectOverviewShort,
             role,
             tldrClip{
                 asset->{

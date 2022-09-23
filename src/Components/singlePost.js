@@ -59,6 +59,7 @@ const SinglePost = () => {
       projectTitle,
       sectionTitle,
       companyName,
+      tldrLink,
       projectOverview,
       role,
       tools,
@@ -184,7 +185,7 @@ const SinglePost = () => {
                     <div style={{ height: "100%", width: `${tldr ? "50%" : "0%" }`, float: "left", transition: "width ease-in-out 0.5s" }} >
                       <h1 className='tldr-project-title' >{tldr ? project.projectTitle : ""}</h1>
                       <div className="sing-proj-modular-tldr" style={{ width: "100%", textAlign: "right" }}>
-                        <h6><a href="https://wccdrops.com/" style={{ color: "black" }}>{tldr ? "View Site" : ""}</a></h6>
+                        {project.tldrLink ? <h6><a href={project.tldrLink} style={{ color: "black" }}>{tldr ? "View Site" : ""}</a></h6> : null}
                       </div>
                     </div>
                     <Element name="Element0"

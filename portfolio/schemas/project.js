@@ -19,14 +19,20 @@ export default {
               hotspot: true,
             },
           },
-          {
-            name: 'tldrClip',
-            title: 'TLDR Clip',
-            type: 'image',
-            options: {
-              hotspot: true,
-            },
-          },
+        {
+          name: 'tldrClip',
+          title: 'TLDR Clip',
+          type: 'image',
+          options: {
+            hotspot: true,
+           },
+        },
+        {
+          name: 'tldrLink',
+          title: 'TLDR Link',
+          type: 'image',
+           type: 'string'
+        },
         {
             name: "slugRoute",
             title: "Slug Route",
@@ -53,11 +59,6 @@ export default {
             title: "Project Overview",
             type: "blockContent"
         },
-        {
-          name: "projectOverviewShort",
-          title: "Project Overview Short",
-          type: "blockContent"
-      },
         {
             title: 'Role',
             name: 'role',
