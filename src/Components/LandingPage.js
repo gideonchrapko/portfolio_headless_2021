@@ -15,6 +15,7 @@ import NavHead from './Navigation/NavHead';
 import NavBar from './Navigation/NavBar';
 
 import ArrowWhite from '../Assets/proj_arrows_white.svg';
+import Avatar from '../Assets/1618532615911.jpg'
 // import Avatar from '../Assets/1618532615911.jpg';
 import '../index.css';
 
@@ -176,16 +177,22 @@ const LandingPage = () => {
                                 md={6}
                                 sm={12}
                                 xs={12}
+                                // style={{ height: "100vh", right: "0", position: "absolute", marginTop: "-40vh", background: "green" }}
                                 style={{ height: "100vh", right: "0", position: "absolute", marginTop: "-40vh" }}
                             >
-                            <Canvas shadows style={{ height: "70vh" }}>
+                            <div 
+                                className='profile-image-cirlce'
+                                style={{ backgroundImage: `url(${Avatar})` }}
+                                >
+                            </div>
+                            {/* <Canvas shadows style={{ height: "70vh" }}>
                                 <Suspense fallback={<Html center>...Loading</Html>}>
                                     <pointLight position={[0, 1, 0]} intensity={1} color={'white'} />                                
                                     <ambientLight intensity={3} />
                                     <Model />
                                     <Controls />
                                 </Suspense>
-                            </Canvas>
+                            </Canvas> */}
                             </Col>
                         </Row>
                         <Row>

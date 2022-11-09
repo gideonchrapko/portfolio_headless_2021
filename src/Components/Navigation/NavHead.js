@@ -22,13 +22,13 @@ const NavHead = () => {
                         Contact
                     </a>
                 </Col>
-                <Col lg={2} style={{ textAlign: "center"}} >
+                {/* <Col lg={2} style={{ textAlign: "center"}} >
                     <a className="text-nav-head link d-xs-none d-md-none d-none d-lg-block d-md-block" 
                         href="https://www.instagram.com/gideonchrapko/"
                     >
                         Instagram
                     </a>
-                </Col>
+                </Col> */}
                 <Col lg={2} style={{ textAlign: "center"}} >
                     <a className="text-nav-head link d-xs-none d-md-none d-none d-lg-block d-md-block" 
                     href="https://www.linkedin.com/in/gideon-chrapko-230220a0/"

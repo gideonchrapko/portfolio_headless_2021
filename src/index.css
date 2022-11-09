@@ -540,3 +540,20 @@ canvas {
   text-decoration: none;
   font-weight: 500;
 }
+
+.profile-image-cirlce {
+  top: 30vh;
+  left: 15vw;
+  position: relative;
+  height: 40vw;
+  width: 40vw;
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 50%;
+  /* display: inline-block; */
+  /* margin-right: 4px; */
+  background-color: white;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
