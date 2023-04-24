@@ -13,7 +13,7 @@ const NavHead = () => {
                     xs={10}
                     style={{ textAlign: "center"}}
                 >
-                   <h1 className="text-nav-head" >UX/ UI Designer</h1>
+                   <h1 className="text-nav-head" >UX/ UI Designer & Developer</h1>
                 </Col>
                 <Col lg={{ span: 2, offset: 1}} style={{ textAlign: "center"}} >
                     <a className="text-nav-head link d-xs-none d-md-none d-none d-lg-block" 
