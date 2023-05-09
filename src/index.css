@@ -123,7 +123,7 @@ canvas {
   position: relative;
   background-color: #BAFF00; 
   border-radius: 50px; 
-
+  border: 1px solid white;
   cursor: pointer;
   z-index: 2;
   /* width: 100%; */
